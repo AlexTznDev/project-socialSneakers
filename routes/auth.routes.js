@@ -19,7 +19,7 @@ const {username, email, password} = req.body
 
 if(username === "" || email === "" || password === ""){
     res.status(401).render("auth/signup-form.hbs", {
-        errorMessage: "All the require are necessary"
+        errorMessage: "All field must be completed"
     })
     return
 }
@@ -84,21 +84,44 @@ router.get("/login", (req, res ,next) => {
 })
 
 // POS => "auth/login" => obtencion de la data para el log in.
-router.post("/login", (req, res, next) => {
+router.post("/login", async (req, res, next) => {
     console.log(req.body)
     const { username, password } = req.body
 
     if(username === "" || password === "") {
         res.status(401).render("auth/login-form.hbs", {
-            errorMessage: "Todos los campos deben estar completados"
+            errorMessage: "All field must be completed"
         })
         return;
     }
-    // try {
-    // const foundUser = await User.find() 
-    // } catch (error) {
-    //     next(error)
-    // }
+
+    try {
+    const foundUser = await User.findOne({username: username})
+    if(foundUser === null) {
+        res.status(401).render("auth/login-form.hbs", {
+            errorMessage: "Username doesn't exist"
+        })
+        return;
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, foundUser.password)
+    if(isPasswordCorrect === false){
+        res.status(401).render("auth/login-form.hbs", {
+            errorMessage: "Password is incorrect"
+        })
+        return;
+    }
+
+    req.session.activeUser = foundUser
+    req.session.save(() => {
+        res.redirect("/profile")
+    })
+
+    
+
+    } catch (error) {
+        next(error)
+    }
 })
 
 
