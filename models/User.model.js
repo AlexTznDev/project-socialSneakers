@@ -17,12 +17,12 @@ const userSchema = new Schema(
     description: String,
     profilePicture: String,
     followers: Number, // bonus
-    following: [
-      {
-        type: mongoose.Schemea.Types.ObjectId, // BONUS
-        ref: "User",
-      },
-    ],
+    // following: [
+    //   {
+    //     type: mongoose.Schemea.Types.ObjectId, // BONUS
+    //     ref: "User",
+    //   },
+    // ],
 
     role: {
       type: String,
