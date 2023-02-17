@@ -114,6 +114,7 @@ router.post("/login", async (req, res, next) => {
 
     req.session.activeUser = foundUser
     req.session.save(() => {
+
         res.redirect("/profile")
     })
 

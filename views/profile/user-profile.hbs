@@ -1,3 +1,55 @@
+
+<div class="containerProfile">
+
 <h1>
     This is your personal space.
 </h1>
+
+<p>Username: {{userInfo.username}}</p>
+<p>age: {{userInfo.age}}</p>
+<p>description: {{userInfo.description}}</p>
+
+
+{{#if userInfo.profilePicture}}
+<img src="{{userInfo.profilePicture}}" alt="user image profile"  width="200px">
+{{/if}}
+
+
+<button id="editProfile">Edit Profile</button>
+
+
+
+
+
+<div class="editProfileContainer" style="display: none" >
+
+<form action="profile/edit" method="post">
+
+<h2>Edit your profile</h2>
+
+<label for="Image">image profile file</label>
+<input type="file" name="image">
+
+<label for="age">age</label>
+<input type="number" name="age">
+
+<label for="description">description</label>
+<input type="text" name="description">
+
+<button>Save changing</button>
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
