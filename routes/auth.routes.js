@@ -34,9 +34,25 @@ res.redirect("/auth/login")
 
 //  GET => "/login"
 router.get("/login", (req, res ,next) => {
-
     res.render("auth/login-form.hbs")
+})
 
+// POS => "auth/login" => obtencion de la data para el log in.
+router.post("/login", (req, res, next) => {
+    console.log(req.body)
+    const { username, password } = req.body
+
+    if(username === "" || password === "") {
+        res.status(401).render("auth/login-form.hbs", {
+            errorMessage: "Todos los campos deben estar completados"
+        })
+        return;
+    }
+    // try {
+    // const foundUser = await User.find() 
+    // } catch (error) {
+    //     next(error)
+    // }
 })
 
 

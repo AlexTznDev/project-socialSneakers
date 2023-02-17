@@ -1,3 +1,21 @@
 <div>
-    <h3>Login page</h3>
+
+<form action="/auth/login" method="post">
+
+<h1>Log in</h1>
+
+<label for="username">Username:</label>
+<input type="text" name="username">
+<br>
+<label for="password">password:</label>
+<input type="text" name="password">
+<br>
+<button>Create</button>
+
+{{#if this.errorMessage}}
+    <p>{{this.errorMessage}}</p>
+{{/if}}   
+ 
+</form>
+
 </div>
