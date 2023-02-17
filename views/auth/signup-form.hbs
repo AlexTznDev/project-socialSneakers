@@ -1,20 +1,23 @@
 <div>
 
-<form action="/auth/signup" method="post">
+  <form action="/auth/signup" method="post">
 
-<h1>Sign up</h1>
+    <h1>Sign up</h1>
 
-<label for="username">Username:</label>
-<input type="text" name="username">
-<br>
-<label for="email">email:</label>
-<input type="text" name="email">
-<br>
-<label for="password">password:</label>
-<input type="text" name="password">
-<br>
-<button>Create</button>
+    <label for="username">Username:</label>
+    <input type="text" name="username" />
+    <br />
+    <label for="email">email:</label>
+    <input type="text" name="email" />
+    <br />
+    <label for="password">password:</label>
+    <input type="text" name="password" />
+    <br />
 
-</form>
+    <p>{{errorMessage}}</p>
+
+    <button>Create</button>
+
+  </form>
 
 </div>
