@@ -5,7 +5,7 @@ const User = require("../models/User.model.js");
 
 const { isLoggedIn } = require("../middlewares/auth-middlewares.js");
 const uploader = require("../middlewares/cloudinary.js");
-const { response } = require("express");
+// const { response } = require("express");
 
 // GET => profile routes
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -28,10 +28,11 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 //POST =>  Formulario en Edit profile container
 router.post("/edit", uploader.single("image") , async (req, res, next) => {
   
-  const { age, description, image } = req.body;
+  const { age, description } = req.body;
   const { _id } = req.session.activeUser;
 
-  
+  // const para cloudinary el url
+  let image;
   if (req.file !== undefined) {
     image = req.file.path
   }
@@ -42,7 +43,7 @@ router.post("/edit", uploader.single("image") , async (req, res, next) => {
     const response = await User.findByIdAndUpdate(_id, {
       age: age,
       description: description,
-      profilePicture: image
+      profilePicture: image // url de cloudinary
     });
     console.log(response);
   } catch (error) {}
