@@ -1,135 +1,137 @@
-
 <div class="containerProfile">
 
-<h1>
-    This is your personal space.
-</h1>
+  <div class="containerInfoUser">
 
-<p>Username: {{userInfo.username}}</p>
-<p>age: {{userInfo.age}}</p>
-<p>description: {{userInfo.description}}</p>
+    <h1>
+      This is your personal space.
+    </h1>
 
+    <p>Username: {{userInfo.username}}</p>
+    <p>age: {{userInfo.age}}</p>
+    <p>description: {{userInfo.description}}</p>
 
-{{#if userInfo.profilePicture}}
-<img src="{{userInfo.profilePicture}}" alt="user image profile"  width="200px">
-{{/if}}
+    {{#if userInfo.profilePicture}}
+      <img
+        src="{{userInfo.profilePicture}}"
+        alt="user image profile"
+        width="200px"
+      />
+    {{/if}}
 
-<br>
-<br>
-<button id="editProfile">Edit Profile</button>
-<button id="createPost">Create Post</button>
+    <br />
+    <br />
+    <button id="editProfile">Edit Profile</button>
+    <button id="createPost">Create Post</button>
 
+  </div>
 
+  <div class="editProfileContainer" style="display: none">
 
+    <form action="profile/edit" method="post" enctype="multipart/form-data">
 
+      <h2>Edit your profile</h2>
 
-<div class="editProfileContainer" style="display: none" >
+      <label for="image">image profile file</label>
+      <input type="file" name="image" />
 
-<form action="profile/edit" method="post" enctype="multipart/form-data">
+      <label for="age">age</label>
+      <input type="number" name="age" value="{{userInfo.age}}" />
 
-<h2>Edit your profile</h2>
+      <label for="description">description</label>
+      <input type="text" name="description" value="{{userInfo.description}}" />
 
-<label for="image">image profile file</label>
-<input type="file" name="image">
+      <button>Save changing</button>
+    </form>
 
-<label for="age">age</label>
-<input type="number" name="age" value="{{userInfo.age}}">
+  </div>
 
-<label for="description">description</label>
-<input type="text" name="description" value="{{userInfo.description}}">
+  <div class="createPostContainer" style="display: none">
 
-<button>Save changing</button>
-</form>
+    <form action="profile/postcreate" method="post" enctype="multipart/form-data">
+
+      <h2>Create a post</h2>
+
+      <label for="price">Price</label>
+      <input type="number" name="price" />
+
+      <br />
+      <br />
+
+      <label for="size">Size</label>
+      <input type="number" name="size" />
+
+      <br />
+      <br />
+
+      <label for="forSale">For sale
+        <select name="forSale">
+          <option value="For sale">For sale</option>
+          <option value="No, i keep it!">No, I keep it!</option>
+        </select>
+
+      </label>
+
+      <br />
+      <br />
+
+      <label for="image">Image sneaker file</label>
+      <input type="file" name="image" />
+
+      <br />
+      <br />
+
+      <label for="color">Color</label>
+      <input type="text" name="color" />
+
+      <br />
+      <br />
+
+      <label for="brand">Brand</label>
+      <input type="text" name="brand" />
+
+      <br />
+      <br />
+
+      <label for="model">Model</label>
+      <input type="text" name="model" />
+
+      <br />
+      <br />
+
+      <label for="status">
+        Status
+        <select name="status">
+          <option value="used">Used</option>
+          <option value="new">New</option>
+        </select>
+      </label>
+
+      <br />
+      <br />
+
+      <label for="description">Description</label>
+      <input type="text" name="description" />
+
+      <br />
+      <br />
+
+      <button>Create</button>
+    </form>
+
+  </div>
+
+  <div class="containerVignetUser">
+
+    {{#each allSneakers}}
+
+      <p>{{this.color}}</p>
+
+      {{#if  this.image}}
+      <img src="{{this.image}}" alt="sneakers model" width="200px">
+      {{/if}}
+
+    {{/each}}
+
+  </div>
 
 </div>
-
-
-<div class="createPostContainer" style="display: none">
-
-<form action="profile/postcreate" method="post">
-
-<h2>Create a post</h2>
-
-<label for="price">Price</label>
-<input type="number" name="price">
-
-<br>
-<br>
-
-<label for="size">Size</label>
-<input type="number" name="size">
-
-<br>
-<br>
-
-<label for="forSale">For sale
-    <select name="forSale">
-        <option value="For sale">For sale</option>
-        <option value="No, i keep it!">No, I keep it!</option>
-    </select>
-
-</label>
-
-
-<br>
-<br>
-
-<label for="image">Image sneaker file</label>
-<input type="text" name="image">
-
-<br>
-<br>
-
-
-
-<label for="color">Color</label>
-<input type="text" name="color">
-
-<br>
-<br>
-
-<label for="brand">Brand</label>
-<input type="text" name="brand">
-
-<br>
-<br>
-
-<label for="model">Model</label>
-<input type="text" name="model">
-
-<br>
-<br>
-
-<label for="status"> Status
-    <select name="status">
-        <option value="used">Used</option>
-        <option value="new">New</option>
-    </select>
-</label>
-
-
-<br>
-<br>
-
-<label for="description">Description</label>
-<input type="text" name="description">
-
-<br>
-<br>
-
-<button>Create</button>
-</form>
-
-</div>
-
-
-
-
-
-
-
-
-</div>
-
-
-
