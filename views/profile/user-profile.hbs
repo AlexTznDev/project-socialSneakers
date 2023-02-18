@@ -123,14 +123,18 @@
       {{#each allSneakers}}
 
       <p>{{this.color}}</p>
-
-      {{#if  this.image}}
-      <img src="{{this.image}}" alt="sneakers model" width="200px">
+     <div class = "imagePost">
+         {{#if  this.image}}
+      <img  src="{{this.image}}" alt="sneakers model" width="200px">
       {{/if}}
 
+     </div>   
+     
     {{/each}}
 
-  <div class="containerVignetUser">
+  <div class="containerVignetUser" style="display: none" >
+
+        <h1>Aqui toda la informacion de tu post.</h1>
 
 
 
