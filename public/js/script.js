@@ -5,11 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-//  In profile changing style display to edit container
+//  In profile changing style display to edit container and create post
 let editProfileContainerDOM = document.querySelector(".editProfileContainer")
+let createPostContainerDOM = document.querySelector(".createPostContainer")
+let createPostDOM = document.querySelector("#createPost")
 let editProfileDOM = document.querySelector("#editProfile")
-const changeDisplay = () =>{
+
+const changeDisplayEditProfil = () =>{
   editProfileContainerDOM.style.display = "block";
 }
-editProfileDOM.addEventListener('click', changeDisplay)
+const changeDisplayCreatPost = () =>{
+  createPostContainerDOM.style.display = "block";
+}
+
+
+editProfileDOM.addEventListener('click', changeDisplayEditProfil)
+createPostDOM.addEventListener('click', changeDisplayCreatPost)
 // *************************************************************************************

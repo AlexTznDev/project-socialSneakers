@@ -1,11 +1,12 @@
-const { Schema, model } = require("mongoose");
+// const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
-const sneakerSchema = new Schema(
+const sneakerSchema = new mongoose.Schema(
   {
     // Sneaker
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
     model: String,
     type: {
@@ -31,6 +32,6 @@ const sneakerSchema = new Schema(
   }
 );
 
-const Sneaker = model("Sneaker", sneakerSchema);
+const Sneaker = mongoose.model("Sneaker", sneakerSchema);
 
 module.exports = Sneaker;

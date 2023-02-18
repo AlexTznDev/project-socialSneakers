@@ -14,8 +14,10 @@
 <img src="{{userInfo.profilePicture}}" alt="user image profile"  width="200px">
 {{/if}}
 
-
+<br>
+<br>
 <button id="editProfile">Edit Profile</button>
+<button id="createPost">Create Post</button>
 
 
 
@@ -31,16 +33,42 @@
 <input type="file" name="image">
 
 <label for="age">age</label>
-<input type="number" name="age">
+<input type="number" name="age" value="{{userInfo.age}}">
 
 <label for="description">description</label>
-<input type="text" name="description">
+<input type="text" name="description" value="{{userInfo.description}}">
 
 <button>Save changing</button>
 </form>
 
 </div>
 
+
+<div class="createPostContainer" style="display: none">
+
+<form action="profile/postcreate" method="post">
+
+<h2>Create a post</h2>
+
+<label for="price">Price</label>
+<input type="checkbox" name="price">
+
+<label for="forSale">For sale</label>
+<input type="checkbox" name="forSale">
+
+<label for="image">image sneaker file</label>
+<input type="file" name="image">
+
+<label for="type">Type</label>
+<input type="text" name="type">
+
+<label for="color">Color</label>
+<input type="text" name="color">
+
+<button>Create</button>
+</form>
+
+</div>
 
 
 
