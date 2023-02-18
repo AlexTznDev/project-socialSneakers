@@ -85,7 +85,7 @@ router.get("/login", (req, res ,next) => {
 
 // POS => "auth/login" => obtencion de la data para el log in.
 router.post("/login", async (req, res, next) => {
-    console.log(req.body)
+   // console.log(req.body)
     const { username, password } = req.body
 
     if(username === "" || password === "") {

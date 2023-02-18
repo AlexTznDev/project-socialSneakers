@@ -4,7 +4,8 @@ const router = express.Router();
 const User = require("../models/User.model.js");
 
 const { isLoggedIn } = require("../middlewares/auth-middlewares.js");
-const uploader = require("../middlewares/cloudinary.js")
+const uploader = require("../middlewares/cloudinary.js");
+const { response } = require("express");
 
 // GET => profile routes
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -27,10 +28,10 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 //POST =>  Formulario en Edit profile container
 router.post("/edit", uploader.single("image") , async (req, res, next) => {
   
-  const { age, description } = req.body;
+  const { age, description, image } = req.body;
   const { _id } = req.session.activeUser;
 
-  let image;
+  
   if (req.file !== undefined) {
     image = req.file.path
   }
@@ -38,16 +39,14 @@ router.post("/edit", uploader.single("image") , async (req, res, next) => {
   try {
 
     // update data from edit profil form
-    const reponse = await User.findByIdAndUpdate(_id, {
+    const response = await User.findByIdAndUpdate(_id, {
       age: age,
       description: description,
       profilePicture: image
-
-
     });
-    console.log(reponse);
+    console.log(response);
   } catch (error) {}
-
+  
   res.redirect("/profile");
 });
 
