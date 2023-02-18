@@ -8,23 +8,23 @@ const sneakerSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    brand: String,
     model: String,
-    type: {
-      type: String,
-      enum: [""], //
-    },
     size: Number,
     color: String,
     material: String,
     description: String,
-    imagen: String,
+    image: String,
     status: {
       type: String,
-      enum: [""], //
+      enum: ["used" , "new"], //
     },
 
     likes: Number, // update +1.
-    forSale: Boolean,
+    forSale: {
+      type: String,
+      enum: ["For sale" , "No, i keep it!"], //
+    },
     price: Number,
   },
   {

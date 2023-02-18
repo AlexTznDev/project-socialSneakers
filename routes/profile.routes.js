@@ -46,7 +46,6 @@ router.post("/edit", uploader.single("image") , async (req, res, next) => {
       description: description,
       profilePicture: image // url de cloudinary
     });
-    console.log(response);
   } catch (error) {}
   
   res.redirect("/profile");
@@ -59,13 +58,31 @@ router.post("/edit", uploader.single("image") , async (req, res, next) => {
 router.post("/postcreate", async (req, res, next) => {
 
     const { _id } = req.session.activeUser;
-    console.log(req.body)
+    const { price, forSale, size, color, description, status, brand , model, image } = req.body
+    console.log(forSale)
     console.log(_id)
 
     try {
         
+const response = await Sneaker.create({
+
+    owner: _id,
+    brand:brand,
+    model: model,
+    size: size,
+    color: color,
+    description: description,
+    image: image,
+    status: status,
+    forSale: forSale,
+    price: price
+
+    
+})
+
+
     } catch (error) {
-        
+        next(error)
     }
 
 res.redirect("/profile");
