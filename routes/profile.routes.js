@@ -7,8 +7,6 @@ const Sneaker = require("../models/Sneaker.model.js");
 const { isLoggedIn } = require("../middlewares/auth-middlewares.js");
 const uploader = require("../middlewares/cloudinary.js");
 
-
-
 // const { response } = require("express");
 
 // GET => profile routes
@@ -17,15 +15,12 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     // recojer la informacion con el id y enviar a la pagina profil para utilizar la informacion
     const responseUser = await User.findById(_id);
-    const reponseSneaker = await Sneaker.find({ owner: _id })
-
+    const reponseSneaker = await Sneaker.find({ owner: _id });
 
     res.render("profile/user-profile.hbs", {
       userInfo: responseUser,
       allSneakers: reponseSneaker,
-      
     });
-
   } catch (error) {
     next(error);
   }
@@ -56,20 +51,10 @@ router.post("/edit", uploader.single("image"), async (req, res, next) => {
 
 //POST => Formulario de Create Post
 
-router.post("/postcreate", uploader.single("image"),  async (req, res, next) => {
+router.post("/postcreate", uploader.single("image"), async (req, res, next) => {
   const { _id } = req.session.activeUser;
-  const {
-    price,
-    forSale,
-    size,
-    color,
-    description,
-    status,
-    brand,
-    model,
-    
-  } = req.body;
-
+  const { price, forSale, size, color, description, status, brand, model } =
+    req.body;
 
   let image;
   if (req.file !== undefined) {
@@ -96,48 +81,37 @@ router.post("/postcreate", uploader.single("image"),  async (req, res, next) => 
   res.redirect("/profile");
 });
 
-
-
 // => GET "/info-user/:id" routa del information de la vignetta
-router.get("/info-user/:id", async  (req, res, next) => {
-const {id} = req.params
+router.get("/info-user/:id", async (req, res, next) => {
+  const { id } = req.params;
 
-try {
+  try {
     const response = await Sneaker.findById(id).populate("owner")
-    //console.log(response)
-res.render("profile/post-info.hbs", {
-    allPostInfo : response
-})
 
-} catch (error) {
-    
-}
-})
+   
+    //console.log(response)
+    res.render("profile/post-info.hbs", {
+      allPostInfo: response
+    });
+  } catch (error) {}
+});
 
 // => POST ("/info-user/:id") Ruta de aceptacion de comentarios
 router.post("/info-user/:id", async (req, res, next) => {
-  const{id} = req.params
-  const {comments} = req.body
-
-  console.log(comments)
+  const { id } = req.params;
+  const { comments } = req.body;
+  const { _id } = req.session.activeUser;
 
   try {
-      await Sneaker.findByIdAndUpdate(id, {
-      $push:{
-        comments:comments
+    await Sneaker.findByIdAndUpdate(id, {
+      $push: { comments: { usuario: _id, comentario: comments } },
+    });
 
-       }  
-      
-   })
-   
-   res.redirect(`/profile/info-user/${id}`)
-
+    res.redirect(`/profile/info-user/${id}`);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
-
-
+});
 
 module.exports = router;
 

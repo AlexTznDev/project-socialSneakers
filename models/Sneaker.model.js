@@ -15,15 +15,15 @@ const sneakerSchema = new mongoose.Schema(
     material: String,
     description: String,
     image: String,
-    comments: {
+    comments: [{
       usuario:{
-        type:String
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
       },
       comentario:{
         type:String
       }
-
-    },
+    }],
     status: {
       type: String,
       enum: ["used" , "new"], //

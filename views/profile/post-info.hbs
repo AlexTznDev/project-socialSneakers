@@ -1,20 +1,37 @@
 <div> 
     <h1> information post</h1>
 
-    <div>
-        <h2>{{allPostInfo.owner.username}}</h2>
-      <p>{{allPostInfo.color}}</p>
+    <div style="background-color: brown;">
+        <h2>name user:{{allPostInfo.owner.username}}</h2>
      <div class = "imagePost">   
     <img  src="{{allPostInfo.image}}" alt="sneakers model" width="200px">
-       <div>
-        {{#each allPostInfo.comments}}
-            <p>{{this}}</p>
-        {{/each}}
-       </div> 
-     
+    <p>size: {{allPostInfo.size}}</p>
+    </div>
     </div>
 
-    <div>
+{{!-- commentario --}}
+       <div style="background-color: blue;">
+
+        <p>{{allPostInfo.comments.usuario.username}}</p>
+        {{#each allPostInfo.comments}}
+        
+
+            <h2>{{this.usuario}}</h2>
+            <p>comment: {{this.comentario}}</p>
+
+        {{/each}}
+
+
+
+
+
+       </div>
+       
+
+     
+
+
+    <div >
         <form action="/profile/info-user/{{allPostInfo._id}}" method = "post"> Leave your comment
             <label for="comments" ></label>
             <input type="text" name="comments" placeholder="...">
@@ -22,4 +39,3 @@
         </form>
     </div>
 
-</div>
