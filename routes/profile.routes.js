@@ -14,11 +14,17 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     // recojer la informacion con el id y enviar a la pagina profil para utilizar la informacion
     const responseUser = await User.findById(_id);
-    const reponseSneaker = await Sneaker.find({ owner: _id });
+    const reponseSneaker = await Sneaker.find({ owner: _id })
+    const responseSneakerInfo = await Sneaker.find({ owner: _id }).select(_id)
+
+
     res.render("profile/user-profile.hbs", {
       userInfo: responseUser,
-      allSneakers: reponseSneaker
+      allSneakers: reponseSneaker,
+      sneakerInfo : responseSneakerInfo
     });
+  
+      console.log(responseSneakerInfo)
 
 
 
@@ -93,3 +99,5 @@ router.post("/postcreate", uploader.single("image"),  async (req, res, next) => 
 });
 
 module.exports = router;
+
+//

@@ -13,6 +13,9 @@ let containerVignetUserDOM = document.querySelector(".containerVignetUser")
 let createPostDOM = document.querySelector("#createPost")
 let editProfileDOM = document.querySelector("#editProfile")
 
+let volverContainerProfileDOM = document.querySelector(".containerProfile")
+
+
 
 const changeDisplayEditProfil = () =>{
   editProfileContainerDOM.style.display = "block";
@@ -22,7 +25,11 @@ const changeDisplayCreatPost = () =>{
 }
 
 const changeDisplayImagePost = () => {
-  containerVignetUserDOM.style.display = "block";
+  if(containerVignetUserDOM.style.display === "none"){ 
+  containerVignetUserDOM.style.display = "block";}
+  else if(containerVignetUserDOM.style.display ==="block"){
+    containerVignetUserDOM.style.display = "none"
+  }
 }
 
 
