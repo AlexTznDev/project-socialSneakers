@@ -104,7 +104,7 @@ const {id} = req.params
 
 try {
     const response = await Sneaker.findById(id).populate("owner")
-    console.log(response)
+    //console.log(response)
 res.render("profile/post-info.hbs", {
     allPostInfo : response
 })
@@ -114,6 +114,28 @@ res.render("profile/post-info.hbs", {
 }
 })
 
+// => POST ("/info-user/:id") Ruta de aceptacion de comentarios
+router.post("/info-user/:id", async (req, res, next) => {
+  const{id} = req.params
+  const {comments} = req.body
+
+  console.log(comments)
+
+  try {
+      await Sneaker.findByIdAndUpdate(id, {
+      $push:{
+        comments:comments
+
+       }  
+      
+   })
+   
+   res.redirect(`/profile/info-user/${id}`)
+
+  } catch (error) {
+    next(error)
+  }
+})
 
 
 

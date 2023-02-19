@@ -15,6 +15,15 @@ const sneakerSchema = new mongoose.Schema(
     material: String,
     description: String,
     image: String,
+    comments: {
+      usuario:{
+        type:String
+      },
+      comentario:{
+        type:String
+      }
+
+    },
     status: {
       type: String,
       enum: ["used" , "new"], //
