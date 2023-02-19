@@ -47,7 +47,11 @@
 
   <div class="createPostContainer" style="display: none">
 
-    <form action="profile/postcreate" method="post" enctype="multipart/form-data">
+    <form
+      action="profile/postcreate"
+      method="post"
+      enctype="multipart/form-data"
+    >
 
       <h2>Create a post</h2>
 
@@ -119,29 +123,28 @@
     </form>
 
   </div>
+  <br><br>
 
-      {{#each allSneakers}}
+  {{#each allSneakers}}
 
-      <p>{{this.color}}</p>
-     <div class = "imagePost">
-         {{#if  this.image}}
-      <img  src="{{this.image}}" alt="sneakers model" width="200px">
+      {{#if this.image}}
+
+      <a href="/profile/info-user/{{this._id}}">
+        <img src="{{this.image}}" alt="sneakers model" width="200px" class="imagePost"/>
+      </a>
+        
+        <br>
+        <br>
       {{/if}}
 
-     
-     </div>   
-     
-      <div class="containerVignetUser" style="display: none" >
-        
-        <h1>Aqui toda la informacion de tu post.</h1>
-        
-        <p>{{this._id}}</p>
-        
+  {{/each}}
+
+
+  <div class="containerVignetUser" style="display: none">
+
+    <h1>Aqui toda la informacion de tu post.</h1>
 
 
   </div>
-    {{/each}}
-
- 
 
 </div>

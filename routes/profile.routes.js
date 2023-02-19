@@ -6,6 +6,9 @@ const Sneaker = require("../models/Sneaker.model.js");
 
 const { isLoggedIn } = require("../middlewares/auth-middlewares.js");
 const uploader = require("../middlewares/cloudinary.js");
+
+
+
 // const { response } = require("express");
 
 // GET => profile routes
@@ -15,18 +18,13 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     // recojer la informacion con el id y enviar a la pagina profil para utilizar la informacion
     const responseUser = await User.findById(_id);
     const reponseSneaker = await Sneaker.find({ owner: _id })
-    const responseSneakerInfo = await Sneaker.find({ owner: _id }).select(_id)
 
 
     res.render("profile/user-profile.hbs", {
       userInfo: responseUser,
       allSneakers: reponseSneaker,
-      sneakerInfo : responseSneakerInfo
+      
     });
-  
-      console.log(responseSneakerInfo)
-
-
 
   } catch (error) {
     next(error);
@@ -97,6 +95,27 @@ router.post("/postcreate", uploader.single("image"),  async (req, res, next) => 
 
   res.redirect("/profile");
 });
+
+
+
+// => GET "/info-user/:id" routa del information de la vignetta
+router.get("/info-user/:id", async  (req, res, next) => {
+const {id} = req.params
+
+try {
+    const response = await Sneaker.findById(id).populate("owner")
+    console.log(response)
+res.render("profile/post-info.hbs", {
+    allPostInfo : response
+})
+
+} catch (error) {
+    
+}
+})
+
+
+
 
 module.exports = router;
 
