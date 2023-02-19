@@ -1,7 +1,7 @@
 <div> 
     <h1> information post</h1>
 
-    <div style="background-color: brown;">
+    <div style="background-color: brown;color: white">
         <h2>name user:{{allPostInfo.owner.username}}</h2>
      <div class = "imagePost">   
     <img  src="{{allPostInfo.image}}" alt="sneakers model" width="200px">
@@ -10,16 +10,16 @@
     </div>
 
 {{!-- commentario --}}
-       <div style="background-color: blue;">
+       <div style="background-color: blue;  color: white">
 
-        <p>{{allPostInfo.comments.usuario.username}}</p>
-        {{#each allPostInfo.comments}}
+        
+        {{!-- {{#each allCommentInfo.comments}}
         
 
-            <h2>{{this.usuario}}</h2>
+            <h2>{{this.usuario.username}}</h2>
             <p>comment: {{this.comentario}}</p>
 
-        {{/each}}
+        {{/each}} --}}
 
 
 

@@ -87,11 +87,19 @@ router.get("/info-user/:id", async (req, res, next) => {
 
   try {
     const response = await Sneaker.findById(id).populate("owner")
+    const responseComment = await Sneaker.findById(id)
+    .select({comments :1})
+    .populate("comments.usuario")
+
+
+    // console.log(response)
+    console.log(responseComment)
 
    
     //console.log(response)
     res.render("profile/post-info.hbs", {
-      allPostInfo: response
+      allPostInfo: response,
+      allCommentInfo: responseComment
     });
   } catch (error) {}
 });
