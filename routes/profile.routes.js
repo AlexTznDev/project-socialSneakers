@@ -125,45 +125,56 @@ router.post("/info-user/:id", async (req, res, next) => {
   }
 });
 
-
-
-
-
 // => routa los perfil de amigos con sus id
-router.get("/:id", async (req, res, next)=>{
+router.get("/:id", async (req, res, next) => {
+  const { id } = req.params;
 
-    const {id} =req.params
-
-try {
-
-    const response = await User.findById(id)
+  try {
+    const response = await User.findById(id);
     const reponseSneaker = await Sneaker.find({ owner: id });
 
     res.render("profile/friendProfile.hbs", {
-        UserInfo : response,
-        allSneakers: reponseSneaker
-    })
-    
-
-} catch (error) {
-    
-}
-
-
-})
+      UserInfo: response,
+      allSneakers: reponseSneaker,
+    });
+  } catch (error) {}
+});
 
 //=> POST ("/id")
 
 router.post("/:id", (req, res, next) => {
+  const { friend } = req.body;
 
-const {friend} = req.body
-
-
-    res.redirect(`/profile/${friend}`);
+  res.redirect(`/profile/${friend}`);
 });
 
+// => POST ("/postId/delete")
+
+router.post("/:postId/delete", async (req, res, next) => {
+  const { postId } = req.params;
+  const{_id}=req.session.activeUser
 
 
+
+   console.log(_id),
+   console.log(postId)
+
+
+  try {
+    const postUserId = await Sneaker.find({ owner: postId });
+
+    if (postUserId === _id) {
+        await Sneaker.findByIdAndDelete(postId);
+        res.redirect("/profile");
+    }
+
+    res.redirect(`/profile/info-user/${postId}`)
+
+    
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
 
