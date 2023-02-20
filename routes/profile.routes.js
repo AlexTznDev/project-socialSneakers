@@ -174,6 +174,8 @@ router.post("/:postId/delete", async (req, res, next) => {
 
 
 
+
+
 // => POST ("profile/:id/followFriend")
 
 
@@ -200,6 +202,7 @@ res.redirect(`/profile/${idFriend}`)
 
 
 })
+
 
 
 module.exports = router;
