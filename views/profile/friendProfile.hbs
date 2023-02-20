@@ -1,0 +1,85 @@
+<div>
+  
+
+
+<div class="containerProfile">
+
+  <div class="containerInfoUser" style="background-color: rgb(162, 111, 255);">
+
+    <h1>
+      all information friend profile!!!
+    </h1>
+
+    <p>Username: {{UserInfo.username}}</p>
+    <p>age: {{UserInfo.age}}</p>
+    <p>description: {{UserInfo.description}}</p>
+    {{!-- <p>sneakers in the collection: {{allSneakers.length}}</p>
+    <p>sneakers i want a sell: {{shoesInSell.length}}</p> --}}
+
+    {{#if UserInfo.profilePicture}}
+      <img
+        src="{{UserInfo.profilePicture}}"
+        alt="user image profile"
+        width="200px"
+      />
+    {{/if}}
+
+
+  </div>
+
+
+<br>
+<br>
+
+    <div class="friendList" style="background-color: rgb(255, 102, 102);">
+
+
+      <form action="63f0fcf60e7e245640d5626f" method="post">
+
+        <label for="friend"> name of your frien </label>
+        <input type="text" name="friend" value="63f0fcf60e7e245640d5626f" />
+        <button id="LinkFriend">friend n°1</button>
+
+      </form>
+       <form action="63f12810632d1cebc2c96734" method="post">
+
+        <label for="friend"> name of your frien </label>
+        <input type="text" name="friend" value="63f12810632d1cebc2c96734" />
+        <button id="LinkFriend">friend n°2</button>
+
+      </form>
+    </div>
+
+
+
+
+
+  <div style="background-color: rgb(86, 86, 254);">
+    {{#each allSneakers}}
+
+      {{#if this.image}}
+
+        <a href="/profile/info-user/{{this._id}}">
+          <img
+            src="{{this.image}}"
+            alt="sneakers model"
+            width="200px"
+            class="imagePost"
+          />
+        </a>
+
+        <br />
+        <br />
+      {{/if}}
+
+    {{/each}}
+  </div>
+
+
+</div>
+
+
+  {{!-- <form action="friend" method="post">
+    <button id="BtnFollow">Follow</button>
+  </form> --}}
+</div>

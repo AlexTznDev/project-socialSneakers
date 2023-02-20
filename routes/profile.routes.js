@@ -16,10 +16,16 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     // recojer la informacion con el id y enviar a la pagina profil para utilizar la informacion
     const responseUser = await User.findById(_id);
     const reponseSneaker = await Sneaker.find({ owner: _id });
+    const shoesInSell = await Sneaker.find({ forSale: "For sale" }).select({
+      forSale: 1,
+    });
+
+    // console.log(howManyShoes);
 
     res.render("profile/user-profile.hbs", {
       userInfo: responseUser,
       allSneakers: reponseSneaker,
+      shoesInSell: shoesInSell,
     });
   } catch (error) {
     next(error);
@@ -86,20 +92,18 @@ router.get("/info-user/:id", async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const response = await Sneaker.findById(id).populate("owner")
-    const responseComment = await Sneaker.findById(id)
-    .select({comments :1})
-    .populate("comments.usuario")
+    const response = await Sneaker.findById(id).populate("owner");
+    const responseComment = await Sneaker.findById(id).populate({
+      path: "comments.usuario",
+      select: "username",
+    });
 
+    // console.log(responseComment.comments);
 
-    // console.log(response)
-    console.log(responseComment)
-
-   
     //console.log(response)
     res.render("profile/post-info.hbs", {
       allPostInfo: response,
-      allCommentInfo: responseComment
+      allCommentInfo: responseComment.comments,
     });
   } catch (error) {}
 });
@@ -120,6 +124,46 @@ router.post("/info-user/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+
+
+
+
+// => routa los perfil de amigos con sus id
+router.get("/:id", async (req, res, next)=>{
+
+    const {id} =req.params
+
+try {
+
+    const response = await User.findById(id)
+    const reponseSneaker = await Sneaker.find({ owner: id });
+
+    res.render("profile/friendProfile.hbs", {
+        UserInfo : response,
+        allSneakers: reponseSneaker
+    })
+    
+
+} catch (error) {
+    
+}
+
+
+})
+
+//=> POST ("/id")
+
+router.post("/:id", (req, res, next) => {
+
+const {friend} = req.body
+
+
+    res.redirect(`/profile/${friend}`);
+});
+
+
+
 
 module.exports = router;
 

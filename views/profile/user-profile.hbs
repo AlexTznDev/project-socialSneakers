@@ -1,6 +1,6 @@
 <div class="containerProfile">
 
-  <div class="containerInfoUser">
+  <div class="containerInfoUser" style="background-color: rgb(162, 111, 255);">
 
     <h1>
       This is your personal space.
@@ -9,6 +9,8 @@
     <p>Username: {{userInfo.username}}</p>
     <p>age: {{userInfo.age}}</p>
     <p>description: {{userInfo.description}}</p>
+    <p>sneakers in the collection: {{allSneakers.length}}</p>
+    <p>sneakers i want a sell: {{shoesInSell.length}}</p>
 
     {{#if userInfo.profilePicture}}
       <img
@@ -23,7 +25,28 @@
     <button id="editProfile">Edit Profile</button>
     <button id="createPost">Create Post</button>
 
+
+
+
   </div>
+
+
+<br>
+<br>
+
+    <div class="friendList" style="background-color: rgb(255, 102, 102);">
+
+
+      <form action="profile/63f12810632d1cebc2c96734" method="post">
+
+        <label for="friend"> name of your frien </label>
+        <input type="text" name="friend" value="63f12810632d1cebc2c96734" />
+        <button id="LinkFriend">friend n°1</button>
+
+      </form>
+
+    </div>
+
 
   <div class="editProfileContainer" style="display: none">
 
@@ -123,27 +146,32 @@
     </form>
 
   </div>
-  <br><br>
+  <br /><br />
 
-  {{#each allSneakers}}
+  <div style="background-color: rgb(86, 86, 254);">
+    {{#each allSneakers}}
 
       {{#if this.image}}
 
-      <a href="/profile/info-user/{{this._id}}">
-        <img src="{{this.image}}" alt="sneakers model" width="200px" class="imagePost"/>
-      </a>
-        
-        <br>
-        <br>
+        <a href="/profile/info-user/{{this._id}}">
+          <img
+            src="{{this.image}}"
+            alt="sneakers model"
+            width="200px"
+            class="imagePost"
+          />
+        </a>
+
+        <br />
+        <br />
       {{/if}}
 
-  {{/each}}
-
+    {{/each}}
+  </div>
 
   <div class="containerVignetUser" style="display: none">
 
     <h1>Aqui toda la informacion de tu post.</h1>
-
 
   </div>
 

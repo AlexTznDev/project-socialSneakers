@@ -17,10 +17,21 @@ const userSchema = new mongoose.Schema(
     age: Number,
     description: String,
     profilePicture: String,
+
+    friends:[
+      
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User"
+      } 
+
+    ]
+
+    ,
     followers: Number, // bonus
     // following: [
     //   {
-    //     type: mongoose.Schemea.Types.ObjectId, // BONUS
+    //     type: mongoose.Schema.Types.ObjectId, // BONUS
     //     ref: "User",
     //   },
     // ],
