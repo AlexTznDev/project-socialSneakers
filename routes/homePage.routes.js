@@ -9,8 +9,17 @@ router.get("/",async (req, res, next) => {
 
 try {
     const allSneakers = await Sneaker.find().select({ _id : 1 })
+    let arrayOfId = []
+
+
+// for(let i=0; allSneakers.){
+
+// }
+
+
     console.log(allSneakers)
     console.log(allSneakers.length)
+
 } catch (error) {
     
 }
