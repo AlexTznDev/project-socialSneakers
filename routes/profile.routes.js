@@ -118,12 +118,33 @@ router.get("/info-user/:id", async (req, res, next) => {
 });
 
 // => POST ("/info-user/:id") Ruta de aceptacion de comentarios
-router.post("/info-user/:id", async (req, res, next) => {
+router.post("/info-user/:id", uploader.single("image"), async (req, res, next) => {
   const { id } = req.params;
   const { comments } = req.body;
   const { _id } = req.session.activeUser;
+  const { price, forSale, size, color, description, status, brand, model } =
+    req.body;
+
+    let image;
+    if (req.file !== undefined) {
+      image = req.file.path;
+    }
+
 
   try {
+
+    await Sneaker.findByIdAndUpdate(id, {
+      brand: brand,
+      model: model,
+      size: size,
+      color: color,
+      description: description,
+      status: status,
+      forSale: forSale,
+      price: price,
+      image: image
+    });
+
     await Sneaker.findByIdAndUpdate(id, {
       $push: { comments: { usuario: _id, comentario: comments } },
     });
@@ -145,18 +166,25 @@ router.get("/:id", async (req, res, next) => {
       .populate("friends");
     const response = await User.findById(id);
     const reponseSneaker = await Sneaker.find({ owner: id });
-    
+    const shoesInSell = await Sneaker.find({ forSale: "For sale" }).select({
+      forSale: 1,
+    });
+
     const listFriendPostUser = await User.findById(id).select({ friends: 1 });
 
     let isNotFriend = true;
     listFriendPostUser.friends.forEach((eachId) => {
-      if (eachId == _id) {isNotFriend = false;}});
+      if (eachId == _id) {
+        isNotFriend = false;
+      }
+    });
 
     res.render("profile/friendProfile.hbs", {
       UserInfo: response,
       allSneakers: reponseSneaker,
       allFriends: allFriends,
       isNotFriend: isNotFriend,
+      shoesInSell: shoesInSell
     });
   } catch (error) {}
 });
