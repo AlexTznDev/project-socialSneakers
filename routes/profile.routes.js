@@ -19,15 +19,15 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     const shoesInSell = await Sneaker.find({ forSale: "For sale" }).select({
       forSale: 1,
     });
-    const allFriends = await User.findById(_id).select({friends:1}).populate("friends")
-
-    console.log(allFriends);
+    const allFriends = await User.findById(_id)
+      .select({ friends: 1 })
+      .populate("friends");
 
     res.render("profile/user-profile.hbs", {
       userInfo: responseUser,
       allSneakers: reponseSneaker,
       shoesInSell: shoesInSell,
-      allFriends: allFriends
+      allFriends: allFriends,
     });
   } catch (error) {
     next(error);
@@ -96,8 +96,7 @@ router.get("/info-user/:id", async (req, res, next) => {
   const { _id } = req.session.activeUser; //id del active user
 
   try {
-
-    let isUserCanDelete = false
+    let isUserCanDelete = false;
     const response = await Sneaker.findById(id).populate("owner");
     const responseComment = await Sneaker.findById(id).populate({
       path: "comments.usuario",
@@ -106,15 +105,14 @@ router.get("/info-user/:id", async (req, res, next) => {
 
     const postUserId = await Sneaker.findById(id);
 
-    if(postUserId.owner == _id){
-        isUserCanDelete = true
+    if (postUserId.owner == _id) {
+      isUserCanDelete = true;
     }
-
 
     res.render("profile/post-info.hbs", {
       allPostInfo: response,
       allCommentInfo: responseComment.comments,
-      isUserCanDelete:isUserCanDelete
+      isUserCanDelete: isUserCanDelete,
     });
   } catch (error) {}
 });
@@ -139,71 +137,61 @@ router.post("/info-user/:id", async (req, res, next) => {
 // => routa los perfil de amigos con sus id
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
+  const { _id } = req.session.activeUser;
 
   try {
-
-    const allFriends = await User.findById(id).select({friends:1}).populate("friends")
+    const allFriends = await User.findById(id)
+      .select({ friends: 1 })
+      .populate("friends");
     const response = await User.findById(id);
     const reponseSneaker = await Sneaker.find({ owner: id });
+    
+    const listFriendPostUser = await User.findById(id).select({ friends: 1 });
+
+    let isNotFriend = true;
+    listFriendPostUser.friends.forEach((eachId) => {
+      if (eachId == _id) {isNotFriend = false;}});
 
     res.render("profile/friendProfile.hbs", {
       UserInfo: response,
       allSneakers: reponseSneaker,
-      allFriends:allFriends
+      allFriends: allFriends,
+      isNotFriend: isNotFriend,
     });
   } catch (error) {}
 });
 
-
 // => POST ("/postId/delete")
 
 router.post("/:postId/delete", async (req, res, next) => {
-
-  const { postId } = req.params; // id del post sneaker entero 
+  const { postId } = req.params; // id del post sneaker entero
 
   try {
-
-      await Sneaker.findByIdAndDelete(postId);
-      res.redirect("/profile");
-
-  
+    await Sneaker.findByIdAndDelete(postId);
+    res.redirect("/profile");
   } catch (err) {
     next(err);
   }
 });
 
-
-
-
-
 // => POST ("profile/:id/followFriend")
 
+router.post("/:idFriend/followFriend", async (req, res, next) => {
+  const { idFriend } = req.params;
+  const { _id } = req.session.activeUser;
 
-router.post("/:idFriend/followFriend",async (req, res, next)=>{
-const {idFriend} = req.params
-const{_id}=req.session.activeUser
-
-try {
-
+  try {
     await User.findByIdAndUpdate(idFriend, {
-        $push :{friends: _id}
-    })
+      $push: { friends: _id },
+    });
+
     await User.findByIdAndUpdate(_id, {
-        $push :{friends: idFriend}
-    })
+      $push: { friends: idFriend },
+    });
+  } catch (error) {}
 
-    
-} catch (error) {
-    
-}
-
-
-res.redirect(`/profile/${idFriend}`)
-
-
-})
-
-
+  res.redirect(`/profile/${idFriend}`);
+});
 
 module.exports = router;
 

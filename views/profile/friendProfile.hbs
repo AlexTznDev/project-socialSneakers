@@ -75,9 +75,10 @@
 <br>
 <br>
 
-
+{{#if isNotFriend}}
   <form action="/profile/{{UserInfo._id}}/followFriend" method="post">
     <button id="BtnFollow">Follow</button>
   </form>
+{{/if}}
 
 </div>
