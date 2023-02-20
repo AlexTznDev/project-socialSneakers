@@ -91,19 +91,29 @@ router.post("/postcreate", uploader.single("image"), async (req, res, next) => {
 router.get("/info-user/:id", async (req, res, next) => {
   const { id } = req.params;
 
+  const { _id } = req.session.activeUser; //id del active user
+
   try {
+
+    let isUserCanDelete = false
     const response = await Sneaker.findById(id).populate("owner");
     const responseComment = await Sneaker.findById(id).populate({
       path: "comments.usuario",
       select: "username",
     });
 
-    // console.log(responseComment.comments);
+    const postUserId = await Sneaker.findById(id);
 
-    //console.log(response)
+    if(postUserId.owner == _id){
+        isUserCanDelete = true
+    }
+
+    console.log(isUserCanDelete)
+
     res.render("profile/post-info.hbs", {
       allPostInfo: response,
       allCommentInfo: responseComment.comments,
+      isUserCanDelete:isUserCanDelete
     });
   } catch (error) {}
 });
@@ -151,30 +161,34 @@ router.post("/:id", (req, res, next) => {
 // => POST ("/postId/delete")
 
 router.post("/:postId/delete", async (req, res, next) => {
-  const { postId } = req.params;
-  const{_id}=req.session.activeUser
 
-
-
-   console.log(_id),
-   console.log(postId)
-
+  const { postId } = req.params; // id del post sneaker entero 
 
   try {
-    const postUserId = await Sneaker.find({ owner: postId });
 
-    if (postUserId === _id) {
-        await Sneaker.findByIdAndDelete(postId);
-        res.redirect("/profile");
-    }
+      await Sneaker.findByIdAndDelete(postId);
+      res.redirect("/profile");
 
-    res.redirect(`/profile/info-user/${postId}`)
-
-    
+  
   } catch (err) {
     next(err);
   }
 });
+
+
+
+// => POST ("profile/:id/followFriend")
+
+
+router.post("/:id/followFriend", (req, res, next)=>{
+const {id} = req.params
+console.log(req.session.activeUser._id)
+
+res.redirect(`/profile/${id}`)
+
+
+})
+
 
 module.exports = router;
 
