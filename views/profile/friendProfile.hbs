@@ -31,37 +31,18 @@
 <br>
 <br>
 
-    <div class="friendList" style="background-color: rgb(255, 102, 102);">
+  <div class="friendList" style="background-color: rgb(255, 102, 102);">
 
+    <h2 style="color: white">My friends</h2>
+    {{#each allFriends.friends}}
 
-      <form action="63f0fcf60e7e245640d5626f" method="post">
+      <a href="/profile/{{this._id}}" style="color: rgb(255, 255, 255)">{{this.username}}</a>
+      <br />
+      <br />
 
-        <label for="friend"> name of your friend </label>
-        <input type="text" name="friend" value="63f0fcf60e7e245640d5626f" />
-        <button id="LinkFriend">friend n°1</button>
+    {{/each}}
 
-      </form>
-
-      <br> 
-      <br>
-       <form action="63f12810632d1cebc2c96734" method="post">
-
-        <label for="friend"> name of your friend </label>
-        <input type="text" name="friend" value="63f12810632d1cebc2c96734" />
-        <button id="LinkFriend">friend n°2</button>
-
-      </form>
-
-      <br>
-      <br>
-       <form action="63f2c05727df5ef6f2c71d9c" method="post">
-
-        <label for="friend"> name of your friend </label>
-        <input type="text" name="friend" value="63f2c05727df5ef6f2c71d9c" />
-        <button id="LinkFriend">friend n°3</button>
-
-      </form>
-    </div>
+  </div>
 
 
 

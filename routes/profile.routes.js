@@ -139,15 +139,17 @@ router.post("/info-user/:id", async (req, res, next) => {
 // => routa los perfil de amigos con sus id
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
-  
 
   try {
+
+    const allFriends = await User.findById(id).select({friends:1}).populate("friends")
     const response = await User.findById(id);
     const reponseSneaker = await Sneaker.find({ owner: id });
 
     res.render("profile/friendProfile.hbs", {
       UserInfo: response,
       allSneakers: reponseSneaker,
+      allFriends:allFriends
     });
   } catch (error) {}
 });
