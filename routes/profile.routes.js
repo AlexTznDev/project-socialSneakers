@@ -19,13 +19,15 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     const shoesInSell = await Sneaker.find({ forSale: "For sale" }).select({
       forSale: 1,
     });
+    const allFriends = await User.findById(_id).select({friends:1}).populate("friends")
 
-    // console.log(howManyShoes);
+    console.log(allFriends);
 
     res.render("profile/user-profile.hbs", {
       userInfo: responseUser,
       allSneakers: reponseSneaker,
       shoesInSell: shoesInSell,
+      allFriends: allFriends
     });
   } catch (error) {
     next(error);
@@ -108,7 +110,6 @@ router.get("/info-user/:id", async (req, res, next) => {
         isUserCanDelete = true
     }
 
-    console.log(isUserCanDelete)
 
     res.render("profile/post-info.hbs", {
       allPostInfo: response,
@@ -138,6 +139,7 @@ router.post("/info-user/:id", async (req, res, next) => {
 // => routa los perfil de amigos con sus id
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
+  
 
   try {
     const response = await User.findById(id);
@@ -150,13 +152,6 @@ router.get("/:id", async (req, res, next) => {
   } catch (error) {}
 });
 
-//=> POST ("/id")
-
-router.post("/:id", (req, res, next) => {
-  const { friend } = req.body;
-
-  res.redirect(`/profile/${friend}`);
-});
 
 // => POST ("/postId/delete")
 
@@ -180,11 +175,26 @@ router.post("/:postId/delete", async (req, res, next) => {
 // => POST ("profile/:id/followFriend")
 
 
-router.post("/:id/followFriend", (req, res, next)=>{
-const {id} = req.params
-console.log(req.session.activeUser._id)
+router.post("/:idFriend/followFriend",async (req, res, next)=>{
+const {idFriend} = req.params
+const{_id}=req.session.activeUser
 
-res.redirect(`/profile/${id}`)
+try {
+
+    await User.findByIdAndUpdate(idFriend, {
+        $push :{friends: _id}
+    })
+    await User.findByIdAndUpdate(_id, {
+        $push :{friends: idFriend}
+    })
+
+    
+} catch (error) {
+    
+}
+
+
+res.redirect(`/profile/${idFriend}`)
 
 
 })
