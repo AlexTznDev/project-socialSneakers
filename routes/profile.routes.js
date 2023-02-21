@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require("../models/User.model.js");
 const Sneaker = require("../models/Sneaker.model.js");
+const Comments = require("../models/Comments.model.js")
 
 const { isLoggedIn } = require("../middlewares/auth-middlewares.js");
 const uploader = require("../middlewares/cloudinary.js");
@@ -96,12 +97,16 @@ router.get("/info-user/:id", async (req, res, next) => {
   const { _id } = req.session.activeUser; //id del active user
 
   try {
-    let isUserCanDelete = false;
+      let isUserCanDelete = false;
+    // const response = await Sneaker.findById(id).populate("owner");
+    // const responseComment = await Sneaker.findById(id).populate({
+    //   path: "comments.usuario",
+    //   select: "username",
+    // });
+    // ********************************************************************
     const response = await Sneaker.findById(id).populate("owner");
-    const responseComment = await Sneaker.findById(id).populate({
-      path: "comments.usuario",
-      select: "username",
-    });
+    const responseComment = await Sneaker.findById(id).populate("comments")
+
 
     const postUserId = await Sneaker.findById(id);
 
@@ -111,9 +116,10 @@ router.get("/info-user/:id", async (req, res, next) => {
 
     res.render("profile/post-info.hbs", {
       allPostInfo: response,
-      allCommentInfo: responseComment.comments,
+      allCommentInfo: responseComment,
       isUserCanDelete: isUserCanDelete,
     });
+    console.log("RESPUESSTAAAAAAAAAAAA", responseComment)
   } catch (error) {}
 });
 
@@ -121,7 +127,7 @@ router.get("/info-user/:id", async (req, res, next) => {
 router.post("/info-user/:id", uploader.single("image"), async (req, res, next) => {
   const { id } = req.params;
   const { comments } = req.body;
-  const { _id } = req.session.activeUser;
+  const { _id, username } = req.session.activeUser;
   const { price, forSale, size, color, description, status, brand, model } =
     req.body;
 
@@ -132,7 +138,20 @@ router.post("/info-user/:id", uploader.single("image"), async (req, res, next) =
 
 
   try {
+    // creando el comentario
+    
+    const response = await Comments.create({
+      userId: _id,
+      comentario: comments,
+      name: username
+    })
 
+    
+    if(comments !== undefined){
+      await Sneaker.findByIdAndUpdate(id, { $push: {comments : response}
+    })}
+    
+    // Actualizando el post 
     await Sneaker.findByIdAndUpdate(id, {
       brand: brand,
       model: model,
@@ -142,13 +161,19 @@ router.post("/info-user/:id", uploader.single("image"), async (req, res, next) =
       status: status,
       forSale: forSale,
       price: price,
-      image: image
+      image: image,
+      
     });
 
-    await Sneaker.findByIdAndUpdate(id, {
-      $push: { comments: { usuario: _id, comentario: comments } },
-    });
+    // await Sneaker.findByIdAndUpdate(id, {
+    //   $push: { comments: { usuario: _id, comentario: comments } },
+    // });
 
+    //****************************************************
+    
+
+    console.log(response)
+//******************************************************************
     res.redirect(`/profile/info-user/${id}`);
   } catch (error) {
     next(error);
