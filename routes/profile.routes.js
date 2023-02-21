@@ -145,9 +145,13 @@ router.post("/info-user/:id", uploader.single("image"), async (req, res, next) =
       image: image
     });
 
-    await Sneaker.findByIdAndUpdate(id, {
-      $push: { comments: { usuario: _id, comentario: comments } },
-    });
+
+    if(comments !== undefined){
+      await Sneaker.findByIdAndUpdate(id, {
+        $push: { comments: { usuario: _id, comentario: comments } },
+      });
+    }
+
 
     res.redirect(`/profile/info-user/${id}`);
   } catch (error) {
