@@ -16,13 +16,8 @@ const sneakerSchema = new mongoose.Schema(
     description: String,
     image: String,
     comments: [{
-      usuario:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-      },
-      comentario:{
-        type:String
-      }
+        ref:"Comments"  
     }],
     status: {
       type: String,

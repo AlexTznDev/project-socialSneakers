@@ -43,7 +43,9 @@ router.get("/", async (req, res, next) => {
     res.render("homePage/home-page.hbs", {
       allId: arrayOfId,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 });
 
 //=> GET ("/search")
@@ -61,7 +63,9 @@ router.get("/search", async (req, res, next) => {
         responseToSearch:responseToSearch
       });
 
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 
 
 });
@@ -75,7 +79,9 @@ router.post("/search", async (req, res, next) => {
     const response = await Search.find({ owner: _id }).update({
       searchString: search,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 
   res.redirect("/home/search");
 });
