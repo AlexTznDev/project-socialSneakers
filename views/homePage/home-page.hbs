@@ -12,12 +12,24 @@
     <input type="text" name="search" placeholder="Search by brand..">
 </form>
 
+<form action="home/search" method="get">
+    <label for="searchFriend"></label>
+    <input type="text" name="search" placeholder="Search username ...">
+</form>
+
 
 </div>
 
 <div>
 
+
   {{#each allId}}
+  {{#if isNotSearchingFriend}}
   <a href="/profile/info-user/{{this._id}}"><img src="{{this.image}}" alt="image" width="200px" /></a> 
+  {{/if}}
   {{/each}}
+
+
+
+
 </div>

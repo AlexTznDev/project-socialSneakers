@@ -7,10 +7,12 @@ const Search = require("../models/search.model.js");
 router.get("/", async (req, res, next) => {
   
   const { _id } = req.session.activeUser;
+  let isNotSearchingFriend = true
   
   try {
     const allSneakers = await Sneaker.find().select({ _id: 1, image: 1 });
     const response = await Search.find({ owner: _id });
+    
 
     if (response.length == 0) {
       await Search.create({
@@ -42,6 +44,8 @@ router.get("/", async (req, res, next) => {
 
     res.render("homePage/home-page.hbs", {
       allId: arrayOfId,
+      isNotSearchingFriend: isNotSearchingFriend
+
     });
   } catch (error) {
     next(error)
