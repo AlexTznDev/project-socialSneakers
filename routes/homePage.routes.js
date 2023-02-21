@@ -31,7 +31,7 @@ router.get("/", async (req, res, next) => {
             }
           }
     }else {
-        for (let i = arrayOfId.length; arrayOfId.length < response.length - 1; i++) {
+        for (let i = arrayOfId.length; arrayOfId.length < allSneakers.length - 1; i++) {
             let randomNumber = Math.floor(Math.random() * allSneakers.length);
             if (!arrayOfId.includes(allSneakers[randomNumber])) {
               arrayOfId.push(allSneakers[randomNumber]);
