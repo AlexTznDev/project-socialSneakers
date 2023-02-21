@@ -1,0 +1,23 @@
+<div>
+  <h2>Search part</h2>
+
+  <form action="search" method="post">
+    <label for="search"></label>
+    <input type="text" name="search" placeholder="Search by brand..">
+</form>
+
+
+  {{#each responseToSearch}}
+
+  <div class="searchHomeContainer">
+
+
+
+
+</div>
+
+    <a href="/profile/info-user/{{this._id}}">
+      <img src="{{this.image}}" alt="image search" width="200px" /></a>
+
+  {{/each}}
+</div>

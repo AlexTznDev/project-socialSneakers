@@ -1,9 +1,23 @@
 <div>
 
-this is the home page with all collection
-
+  this is the home page with all collection
 
 </div>
 
 
+<div class="searchHomeContainer">
 
+<form action="home/search" method="post">
+    <label for="search"></label>
+    <input type="text" name="search" placeholder="Search by brand..">
+</form>
+
+
+</div>
+
+<div>
+
+  {{#each allId}}
+  <a href="/profile/info-user/{{this._id}}"><img src="{{this.image}}" alt="image" width="200px" /></a> 
+  {{/each}}
+</div>

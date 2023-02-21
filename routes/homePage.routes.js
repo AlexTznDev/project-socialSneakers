@@ -2,33 +2,71 @@ const express = require("express");
 const router = express.Router();
 
 const Sneaker = require("../models/Sneaker.model.js");
+const Search = require("../models/search.model.js");
+
+router.get("/", async (req, res, next) => {
+  
+  const { _id } = req.session.activeUser;
+  
+  try {
+    const allSneakers = await Sneaker.find().select({ _id: 1, image: 1 });
+    const response = await Search.find({ owner: _id });
+
+    if (response.length == 0) {
+      await Search.create({
+        search: [],
+        searchString: "",
+        owner: _id,
+      });
+    }
+
+    let arrayOfId = [];
+
+    for (let i = arrayOfId.length; arrayOfId.length < 20; i++) {
+      let randomNumber = Math.floor(Math.random() * allSneakers.length);
+      if (!arrayOfId.includes(allSneakers[randomNumber])) {
+        arrayOfId.push(allSneakers[randomNumber]);
+      }
+    }
+
+    res.render("homePage/home-page.hbs", {
+      allId: arrayOfId,
+    });
+  } catch (error) {}
+});
+
+//=> GET ("/search")
+
+router.get("/search", async (req, res, next) => {
+  const { _id } = req.session.activeUser;
+
+  try {
+    const responseSearchUser = await Search.find({owner: _id}).select({searchString:1});
+    const responseToSearch = await Sneaker.find({ brand: responseSearchUser[0].searchString }).select({
+      image: 1,
+    })
+
+    res.render("homePage/home-page-search.hbs",{
+        responseToSearch:responseToSearch
+      });
+
+  } catch (error) {}
 
 
+});
 
-router.get("/",async (req, res, next) => {
+//=> POST ("/search")
+router.post("/search", async (req, res, next) => {
+  const { search } = req.body;
+  const { _id } = req.session.activeUser;
 
-try {
-    const allSneakers = await Sneaker.find().select({ _id : 1 })
-    let arrayOfId = []
+  try {
+    const response = await Search.find({ owner: _id }).update({
+      searchString: search,
+    });
+  } catch (error) {}
 
+  res.redirect("/home/search");
+});
 
-// for(let i=0; allSneakers.){
-
-// }
-
-
-    console.log(allSneakers)
-    console.log(allSneakers.length)
-
-} catch (error) {
-    
-}
-
-
-res.render("homePage/home-page.hbs")
-})
-
-
-
-
-module.exports = router
+module.exports = router;
