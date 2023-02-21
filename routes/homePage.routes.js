@@ -22,12 +22,23 @@ router.get("/", async (req, res, next) => {
 
     let arrayOfId = [];
 
-    for (let i = arrayOfId.length; arrayOfId.length < 20; i++) {
-      let randomNumber = Math.floor(Math.random() * allSneakers.length);
-      if (!arrayOfId.includes(allSneakers[randomNumber])) {
-        arrayOfId.push(allSneakers[randomNumber]);
-      }
+
+    if(allSneakers.length > 20){
+        for (let i = arrayOfId.length; arrayOfId.length < 20; i++) {
+            let randomNumber = Math.floor(Math.random() * allSneakers.length);
+            if (!arrayOfId.includes(allSneakers[randomNumber])) {
+              arrayOfId.push(allSneakers[randomNumber]);
+            }
+          }
+    }else {
+        for (let i = arrayOfId.length; arrayOfId.length < response.length - 1; i++) {
+            let randomNumber = Math.floor(Math.random() * allSneakers.length);
+            if (!arrayOfId.includes(allSneakers[randomNumber])) {
+              arrayOfId.push(allSneakers[randomNumber]);
+            }
+          }
     }
+
 
     res.render("homePage/home-page.hbs", {
       allId: arrayOfId,
