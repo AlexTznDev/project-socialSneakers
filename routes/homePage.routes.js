@@ -22,7 +22,7 @@ router.get("/", async (req, res, next) => {
 
     let arrayOfId = [];
 
-    for (let i = arrayOfId.length; arrayOfId.length < 20; i++) {
+    for (let i = arrayOfId.length; arrayOfId.length < 3; i++) {
       let randomNumber = Math.floor(Math.random() * allSneakers.length);
       if (!arrayOfId.includes(allSneakers[randomNumber])) {
         arrayOfId.push(allSneakers[randomNumber]);
@@ -32,7 +32,9 @@ router.get("/", async (req, res, next) => {
     res.render("homePage/home-page.hbs", {
       allId: arrayOfId,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 });
 
 //=> GET ("/search")
@@ -50,7 +52,9 @@ router.get("/search", async (req, res, next) => {
         responseToSearch:responseToSearch
       });
 
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 
 
 });
@@ -64,7 +68,9 @@ router.post("/search", async (req, res, next) => {
     const response = await Search.find({ owner: _id }).update({
       searchString: search,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 
   res.redirect("/home/search");
 });
