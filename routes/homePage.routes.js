@@ -3,11 +3,13 @@ const router = express.Router();
 
 const Sneaker = require("../models/Sneaker.model.js");
 const Search = require("../models/search.model.js");
+const User = require("../models/User.model.js")
 
 router.get("/", async (req, res, next) => {
   
   const { _id } = req.session.activeUser;
-  let isNotSearchingFriend = true
+
+
   
   try {
     const allSneakers = await Sneaker.find().select({ _id: 1, image: 1 });
@@ -19,7 +21,15 @@ router.get("/", async (req, res, next) => {
         search: [],
         searchString: "",
         owner: _id,
+        usernameString:""
       });
+    }else{
+        await Search.find({ owner: _id }).update({
+            search: [],
+            searchString: "",
+            owner: _id,
+            usernameString:""
+        })
     }
 
     let arrayOfId = [];
@@ -33,7 +43,7 @@ router.get("/", async (req, res, next) => {
             }
           }
     }else {
-        for (let i = arrayOfId.length; arrayOfId.length < allSneakers.length - 1; i++) {
+        for (let i = arrayOfId.length; arrayOfId.length < allSneakers.length ; i++) {
             let randomNumber = Math.floor(Math.random() * allSneakers.length);
             if (!arrayOfId.includes(allSneakers[randomNumber])) {
               arrayOfId.push(allSneakers[randomNumber]);
@@ -44,7 +54,7 @@ router.get("/", async (req, res, next) => {
 
     res.render("homePage/home-page.hbs", {
       allId: arrayOfId,
-      isNotSearchingFriend: isNotSearchingFriend
+   
 
     });
   } catch (error) {
@@ -58,13 +68,21 @@ router.get("/search", async (req, res, next) => {
   const { _id } = req.session.activeUser;
 
   try {
-    const responseSearchUser = await Search.find({owner: _id}).select({searchString:1});
+    const responseSearchUser = await Search.find({owner: _id}).select({searchString:1, usernameString:1});
+    
     const responseToSearch = await Sneaker.find({ brand: responseSearchUser[0].searchString }).select({
       image: 1,
     })
+    const responsUserToSearch = await User.find({ username: responseSearchUser[0].usernameString }).select({
+        profilePicture: 1,
+    })
+
+    console.log(responseSearchUser)
+    console.log(responsUserToSearch)
 
     res.render("homePage/home-page-search.hbs",{
-        responseToSearch:responseToSearch
+        responseToSearch:responseToSearch,
+        responsUserToSearch:responsUserToSearch
       });
 
   } catch (error) {
@@ -77,11 +95,14 @@ router.get("/search", async (req, res, next) => {
 //=> POST ("/search")
 router.post("/search", async (req, res, next) => {
   const { search } = req.body;
+  const { searchFriend } = req.body;
   const { _id } = req.session.activeUser;
+
 
   try {
     const response = await Search.find({ owner: _id }).update({
       searchString: search,
+      usernameString:searchFriend
     });
   } catch (error) {
     next(error)

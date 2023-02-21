@@ -8,7 +8,8 @@ const searchSchema = new mongoose.Schema({
     },
   ],
   owner:String,
-  searchString: String
+  searchString: String,
+  usernameString: String
 });
 
 const Search = mongoose.model("Search", searchSchema);
