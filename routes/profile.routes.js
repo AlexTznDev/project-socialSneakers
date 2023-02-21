@@ -119,7 +119,6 @@ router.get("/info-user/:id", async (req, res, next) => {
       allCommentInfo: responseComment,
       isUserCanDelete: isUserCanDelete,
     });
-    console.log("RESPUESSTAAAAAAAAAAAA", responseComment)
   } catch (error) {}
 });
 
@@ -191,7 +190,7 @@ router.get("/:id", async (req, res, next) => {
       .populate("friends");
     const response = await User.findById(id);
     const reponseSneaker = await Sneaker.find({ owner: id });
-    const shoesInSell = await Sneaker.find({ forSale: "For sale" }).select({
+    const shoesInSell = await Sneaker.find({ owner: id } , { forSale: "For sale" }).select({
       forSale: 1,
     });
 
