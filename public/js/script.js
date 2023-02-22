@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let editPostContainerDOM = document.querySelector(".editPostContainer");
   if(editPostButtonDOM !== null && editPostContainerDOM !== null ){
       editPostButtonDOM.addEventListener("click", () => {
-    editPostContainerDOM.style.display = "block";
+    editPostContainerDOM.style.display = "flex";
   });
   }
 
@@ -42,9 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if(cruzSalirEditprofilContainerDOM !== null && editProfileContainerDOM !== null){
     cruzSalirEditprofilContainerDOM.addEventListener("click", () => {
       editProfileContainerDOM.style.display = "none";
-      
+    
   });
   }
+
+  let cruzSalirContainerEditPostDOM = document.querySelector(".cruzSalirContainerEditPost")
+  if(cruzSalirContainerEditPostDOM !== null && editPostContainerDOM !== null){
+    cruzSalirContainerEditPostDOM.addEventListener("click", () => {
+      editPostContainerDOM.style.display = "none";
+    
+  });
+  }
+
 
   // *************************************************************************************
 });
