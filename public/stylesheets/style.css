@@ -6,7 +6,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-p{
+p {
   color: #fff;
 }
 
@@ -20,8 +20,8 @@ span {
   font-size: 18px;
 }
 
-.navWhite{
-color: white;
+.navWhite {
+  color: white;
 }
 
 nav {
@@ -33,6 +33,7 @@ nav {
   color: #ff0080;
   justify-content: flex-end;
   transform: translateX(-40px);
+  z-index: 1000;
 }
 
 nav a {
@@ -141,10 +142,11 @@ h1 {
 
 /*  profil css  */
 
-.containerProfile{
+.containerProfile {
   background-color: rgb(33, 33, 33);
   min-height: 100vh;
 }
+
 .wrapperImgProfil {
 
   width: 10rem;
@@ -215,6 +217,7 @@ h1 {
 
 
 }
+
 .infoProfile {
   display: flex;
   flex-direction: row;
@@ -233,7 +236,7 @@ h1 {
   flex-wrap: wrap;
 }
 
-.wrapperVignetteProfil{
+.wrapperVignetteProfil {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -243,15 +246,32 @@ h1 {
   overflow: hidden;
 }
 
-.imagePost{
-  
+.imagePost {
+
   width: 100%;
 }
 
 
 
 /* css del parte create image post*/
-.createPostContainer{
+
+.cruzSalirContainer {
+  width: 1rem;
+  height: 1rem;
+  background-image: url("../images/croixSalir.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translate(-27rem, -1rem);
+
+}
+
+
+.fixed {
+  position: fixed;
+}
+
+.createPostContainer {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -265,7 +285,7 @@ h1 {
 }
 
 
-.createPostContainer form{
+.createPostContainer form {
   padding: 1.5rem 1rem;
   background-color: #ffffffe3;
   border-radius: 2rem;
@@ -291,7 +311,7 @@ h1 {
   margin: 5px;
 }
 
-.createPostContainer form button{
+.createPostContainer form button {
   border: none;
   background: rgb(33, 33, 33);
   width: 35rem;
@@ -316,14 +336,14 @@ h1 {
 }
 
 
-.containerImgTextCreatePost{
+.containerImgTextCreatePost {
   width: 35rem;
   display: flex;
   justify-content: flex-end;
   padding: 1rem 0;
 }
 
-.wrapperImgProfilCreatePost{
+.wrapperImgProfilCreatePost {
   width: 6rem;
   height: 6rem;
   overflow: hidden;
@@ -333,7 +353,7 @@ h1 {
 
 }
 
-.createPostContainer textarea{
+.createPostContainer textarea {
   padding: .5rem;
   text-align: center;
   border: none;
@@ -347,7 +367,8 @@ h1 {
   margin: 5px;
 
 }
-.createPostContainer textarea::placeholder{
+
+.createPostContainer textarea::placeholder {
   color: rgb(33, 33, 33);
   font-size: 14px;
   font-weight: 800;
@@ -360,7 +381,7 @@ h1 {
 }
 
 
-.wrapperSelect{
+.wrapperSelect {
 
   width: 35rem;
   display: flex;
@@ -387,7 +408,6 @@ select {
   background-position: calc(100% - 20px) center, calc(100% - 10px) center;
   background-size: 10px 10px;
   background-repeat: no-repeat;
-
 }
 
 
@@ -415,3 +435,94 @@ select option:checked {
 
 
 
+
+/* all the editProfileContainer*/
+
+
+.editProfileContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #00000062;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+
+
+.editProfileContainer form {
+  padding: 1.5rem 1rem;
+  background-color: #ffffffe3;
+  border-radius: 2rem;
+  color: rgb(33, 33, 33);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  ;
+}
+
+.editProfileContainer input {
+  padding: .5rem;
+  text-align: center;
+  border: none;
+  border: .5px solid rgb(33, 33, 33);
+  border-radius: .5rem;
+  background-color: transparent;
+  color: rgb(33, 33, 33);
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  width: 35rem;
+  margin: 5px;
+}
+
+.editProfileContainer form button {
+  border: none;
+  background: rgb(33, 33, 33);
+  width: 35rem;
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.editProfileContainer input::placeholder {
+  color: rgb(33, 33, 33);
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.editProfileContainer input:focus {
+  outline-color: #C598FF;
+}
+
+
+.containerImgTextCreatePostEditProfile {
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+  gap: 1rem;
+}
+
+
+.cruzSalirEditprofilContainer{
+
+  width: 1rem;
+  height: 1rem;
+  background-image: url("../images/croixSalir.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translate(-16rem, -3rem);
+}

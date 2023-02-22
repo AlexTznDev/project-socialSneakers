@@ -65,15 +65,30 @@
 
     <form action="profile/edit" method="post" enctype="multipart/form-data">
 
-      <h2>Edit your profile</h2>
+      <div class="containerImgTextCreatePostEditProfile">
 
-      <label for="image">image profile file</label>
+        <div class="cruzSalirEditprofilContainer"></div>
+
+        <div class="wrapperImgProfilCreatePost">
+
+          {{#if userInfo.profilePicture}}
+            <img
+              src="{{userInfo.profilePicture}}"
+              alt="user image profile"
+              width="200px"
+            />
+          {{/if}}
+        </div>
+        <h2 id="ajustTilte">Edit your profile</h2>
+      </div>
+
+      <label for="image"></label>
       <input type="file" name="image" />
 
-      <label for="age">age</label>
+      <label for="age"></label>
       <input type="number" name="age" value="{{userInfo.age}}" />
 
-      <label for="description">description</label>
+      <label for="description"></label>
       <input type="text" name="description" value="{{userInfo.description}}" />
 
       <button>Save changing</button>
@@ -89,51 +104,48 @@
       enctype="multipart/form-data"
     >
 
+      <div class="containerImgTextCreatePost">
+        <div class="cruzSalirContainer"></div>
+        <div class="wrapperImgProfilCreatePost">
 
+          {{#if userInfo.profilePicture}}
+            <img
+              src="{{userInfo.profilePicture}}"
+              alt="user image profile"
+              width="200px"
+            />
+          {{/if}}
 
-<div class="containerImgTextCreatePost">
-      <div class="wrapperImgProfilCreatePost">
-
-        {{#if userInfo.profilePicture}}
-          <img
-            src="{{userInfo.profilePicture}}"
-            alt="user image profile"
-            width="200px"
-          />
-        {{/if}}
+        </div>
 
       </div>
-</div>
 
+      <div class="wrapperSelect">
+        <label for="status">
 
+          <select name="status">
+            <option value="used">Used</option>
+            <option value="new">New</option>
+          </select>
+        </label>
 
-<div class="wrapperSelect">
-      <label for="status">
-     
-        <select name="status">
-          <option value="used">Used</option>
-          <option value="new">New</option>
-        </select>
-      </label>
+        <label for="forSale">
+          <select name="forSale">
+            <option value="For sale">For sale</option>
+            <option value="No, i keep it!">No, I keep it!</option>
+          </select>
 
-      <label for="forSale">
-        <select name="forSale">
-          <option value="For sale">For sale</option>
-          <option value="No, i keep it!">No, I keep it!</option>
-        </select>
-
-      </label>
-</div>
+        </label>
+      </div>
 
       <label for="image"></label>
-      <input type="file" name="image"/>
+      <input type="file" name="image" />
 
       <label for="price"></label>
       <input type="number" name="price" placeholder="Price" />
 
       <label for="size"></label>
       <input type="number" name="size" placeholder="Size" />
-
 
       <label for="color"></label>
       <input type="text" name="color" placeholder="Color" />
@@ -145,7 +157,12 @@
       <input type="text" name="model" placeholder="Model" />
 
       <label for="description"></label>
-      <textarea rows="4" cols="50" name="description" placeholder="Description"></textarea>
+      <textarea
+        rows="4"
+        cols="50"
+        name="description"
+        placeholder="Description"
+      ></textarea>
 
       <button>Create</button>
     </form>
