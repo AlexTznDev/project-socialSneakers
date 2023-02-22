@@ -1,137 +1,178 @@
-<div class="containerPost"> 
-    <h1> information post</h1>
+<div class="containerPost">
+  <div class="containerPostBG">
 
-    <div style="background-color: brown;color: white">
-        
-        
-        
-        <a href="/profile/{{allPostInfo.owner._id}}"><h2>name user:{{allPostInfo.owner.username}}</h2></a>
-        
-
-
-
-     <div class = "imagePost">   
-    <img  src="{{allPostInfo.image}}" alt="sneakers model" width="200px">
-    <p>size: {{allPostInfo.size}}</p>
-    </div>
+    <div class="ContainerimagePostInfo">
+      <img
+        class="imagePostInfo"
+        src="{{allPostInfo.image}}"
+        alt="sneakers model"
+        width="200px"
+      />
     </div>
 
-{{!-- commentario --}}
-       <div style="background-color: blue;  color: white">
+    {{! commentario }}
 
-        
+    <div class="containerCommentAndInfo">
+
+      <div class="nameUserAndButton">
+        <div class="nameAndImgInfo">
+
+          <div class="wrapperImgIcon">
+            <img
+              src="{{allPostInfo.owner.profilePicture}}"
+              alt="profile picture owner"
+            />
+          </div>
+
+          <a href="/profile/{{allPostInfo.owner._id}}"><p
+            >{{allPostInfo.owner.username}}</p></a>
+
+        </div>
+
+        <p>{{allPostInfo.description}}</p>
+
+        <div class="containerButtonPost">
+          {{#if isUserCanDelete}}
+            <form action="/profile/{{allPostInfo._id}}/delete" method="post">
+              <button class="deleteBtn">Delete</button>
+            </form>
+          {{/if}}
+          {{#if isUserCanDelete}}
+            <button id="editPostButton">Edit</button>
+          {{/if}}
+        </div>
+
+      </div>
+
+      <div class="allComment">
+
         {{#each allCommentInfo.comments}}
-        
 
-           <a href="/profile/{{this.userId}}"><img src="{{this.profilePicture}}" alt=""><h2>{{this.name}}</h2></a> 
+          <div class="wrapperNameCommentVisit">
 
-            
-            <p>comment: {{this.comentario}}</p>
-            
+            <div class="wrapperImgIcon">
+              <img src="{{this.profilePicture}}" alt="profile picture owner" />
+            </div>
+
+            <a href="/profile/{{this.userId}}"><span>{{this.name}}</span></a>
+
+            <p>{{this.comentario}}</p>
+
+          </div>
+
         {{/each}}
 
+      </div>
 
-       </div>
-       
+      <div class="containerLeaveComment">
+        <form action="/profile/info-user/{{allPostInfo._id}}" method="post">
+
+          <label for="comments"></label>
+          <input type="text" name="comments" placeholder="Leave your comment" />
+
+        </form>
+      </div>
+
+      <div class="editPostContainer" style="display: none">
+
+        <form
+          action="/profile/info-user/{{allPostInfo._id}}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+
+          <div class="containerImgTextCreatePost">
+            <div class="cruzSalirContainerEditPost"></div>
+
+            <div class="wrapperImgProfilCreatePost">
+
+              <img
+                src="{{allPostInfo.owner.profilePicture}}"
+                alt="user image profile"
+                width="200px"
+              />
+
+            </div>
+
+          </div>
+
+          <div class="wrapperSelect">
+            <label for="status">
+              <select name="status">
+                <option value="used">Used</option>
+                <option value="new">New</option>
+              </select>
+            </label>
+
+            <label for="forSale">
+              <select name="forSale">
+                <option value="For sale">For sale</option>
+                <option value="No, i keep it!">No, I keep it!</option>
+              </select>
+
+            </label>
+
+          </div>
+
+          <label for="price"></label>
+          <input
+            type="number"
+            name="price"
+            value="{{allPostInfo.price}}"
+            placeholder="Price"
+          />
+
+          <label for="size"></label>
+          <input
+            type="number"
+            name="size"
+            value="{{allPostInfo.size}}"
+            placeholder="Size"
+          />
+
+          <label for="image"></label>
+          <input type="file" name="image" />
+
+          <label for="color"></label>
+          <input
+            type="text"
+            name="color"
+            value="{{allPostInfo.color}}"
+            placeholder="Color"
+          />
+
+          <label for="brand"></label>
+          <input
+            type="text"
+            name="brand"
+            value="{{allPostInfo.brand}}"
+            placeholder="Brand"
+          />
+
+          <label for="model"></label>
+          <input
+            type="text"
+            name="model"
+            value="{{allPostInfo.model}}"
+            placeholder="Model"
+          />
 
 
-       {{#if isUserCanDelete}}
-      <form action="/profile/{{allPostInfo._id}}/delete" method="post">
-        <button class="deleteBtn">Delete</button>
-      </form>
-      {{/if}}
+          <label for="description"></label>
+          <textarea
+            rows="4"
+            cols="50"
+            name="description"
+            placeholder="{{allPostInfo.description}}"
+          ></textarea>
 
-
-
-    {{!-- edit post btn--}}
-    {{#if isUserCanDelete}}
-    <button id="editPostButton">Edit</button>
-    {{/if}}
-    {{!-- edit post form--}}
-    <div class="editPostContainer" style="display: none">
-        <h1>Edit your Post</h1>
-
-        <form action="/profile/info-user/{{allPostInfo._id}}" method = "post" enctype="multipart/form-data">
-      <label for="price">Price</label>
-      <input type="number" name="price" value="{{allPostInfo.price}}"/>
-
-      <br />
-      <br />
-
-      <label for="size">Size</label>
-      <input type="number" name="size" value="{{allPostInfo.size}}"/>
-
-      <br />
-      <br />
-
-      <label for="forSale">For sale
-        <select name="forSale">
-          <option value="For sale">For sale</option>
-          <option value="No, i keep it!">No, I keep it!</option>
-        </select>
-
-      </label>
-
-      <br />
-      <br />
-
-      <label for="image">Image sneaker file</label>
-      <input type="file" name="image"/>
-
-      <br />
-      <br />
-
-      <label for="color">Color</label>
-      <input type="text" name="color" value="{{allPostInfo.color}}"/>
-
-      <br />
-      <br />
-
-      <label for="brand">Brand</label>
-      <input type="text" name="brand" value="{{allPostInfo.brand}}"/>
-
-      <br />
-      <br />
-
-      <label for="model">Model</label>
-      <input type="text" name="model" value="{{allPostInfo.model}}"/>
-
-      <br />
-      <br />
-
-      <label for="status">
-        Status
-        <select name="status">
-          <option value="used">Used</option>
-          <option value="new">New</option>
-        </select>
-      </label>
-
-      <br />
-      <br />
-
-      <label for="description">Description</label>
-      <input type="text" name="description" value="{{allPostInfo.description}}"/>
-
-      <br />
-      <br />
-
-            <button>Edit post</button>
+          <button>Edit post</button>
         </form>
 
+      </div>
 
     </div>
 
+  </div>
 
-
-
-    <div >
-        <form action="/profile/info-user/{{allPostInfo._id}}" method = "post"> Leave your comment
-            <label for="comments" ></label>
-            <input type="text" name="comments" placeholder="...">
-            <button>Post</button>
-        </form>
-    </div>
-
-
-    
+</div>
