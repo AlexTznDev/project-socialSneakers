@@ -204,6 +204,7 @@ h1 {
   background-color: transparent;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.298);
+  cursor: pointer;
 
 }
 
@@ -247,8 +248,11 @@ h1 {
 }
 
 .imagePost {
-
+  
   width: 100%;
+  
+  
+
 }
 
 
@@ -263,6 +267,7 @@ h1 {
   background-size: cover;
   background-repeat: no-repeat;
   transform: translate(-27rem, -1rem);
+  cursor: pointer;
 
 }
 
@@ -525,4 +530,5 @@ select option:checked {
   background-size: cover;
   background-repeat: no-repeat;
   transform: translate(-16rem, -3rem);
+  cursor: pointer;
 }
