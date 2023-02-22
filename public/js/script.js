@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let createPostDOM = document.querySelector("#createPost");
   if(createPostContainerDOM !== null && createPostDOM !== null){
       createPostDOM.addEventListener("click", () => {
-    createPostContainerDOM.style.display = "block";
+      createPostContainerDOM.style.display = "flex";
   });
   }
 

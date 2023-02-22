@@ -1,37 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
-*{
+p{
+  color: #fff;
+}
+
+
+* {
   margin: 0;
 }
 
+span {
+  font-weight: bold;
+  font-size: 18px;
+}
 
+.navWhite{
+color: white;
+}
 
-nav{
+nav {
   position: fixed;
   display: flex;
-  padding: .5rem 1rem;
-  gap:1.5rem;
+  padding: 1rem 1rem;
+  gap: 1.5rem;
   width: 100%;
   color: #ff0080;
   justify-content: flex-end;
-  transform: translateX(-30px);
+  transform: translateX(-40px);
 }
+
 nav a {
   text-decoration: none;
-  color: #ff0080;
+  color: #C598FF;
 }
+
 nav a:hover {
-  color: #fb1c8c;
+  color: #a461fc;
 }
 
 h1 {
   color: 15px;
 }
 
-
-.containerLogin{
+/*  login css  */
+.containerLogin {
   width: 100vw;
   height: 100vh;
   background-color: #00b7ff;
@@ -40,13 +58,12 @@ h1 {
   justify-content: center;
   align-items: center;
   background-image: url("../images/fundo.svg");
-  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  
+
 }
 
-.containerLogin form{
+.containerLogin form {
   padding: 4rem 1rem;
   background-color: rgba(13, 0, 50, 0.226);
   border-radius: 2rem;
@@ -56,14 +73,14 @@ h1 {
   justify-content: center;
   align-items: center;
   ;
-  
+
 }
 
-.containerLogin form h1{
+.containerLogin form h1 {
   margin-bottom: 1rem;
 }
 
-.containerLogin input{
+.containerLogin input {
   padding: .5rem;
   text-align: center;
   border: none;
@@ -72,18 +89,22 @@ h1 {
   background-color: transparent;
   color: #fff;
   width: 15rem;
+  margin: 5px;
 }
 
 
 
-.containerLogin input::placeholder{
+.containerLogin input::placeholder {
   color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
 }
 
 
 
 
-.containerLogin form button{
+.containerLogin form button {
 
   padding: .5rem 1rem;
   border: .5px solid rgba(255, 255, 255, 0.285);
@@ -91,10 +112,12 @@ h1 {
   color: rgba(13, 0, 50, 0.741);
   width: 15rem;
   border-radius: .5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 
 }
 
-.containerLogin form button:hover{
+.containerLogin form button:hover {
 
 
   background-color: #e6e3e3;
@@ -102,7 +125,7 @@ h1 {
 }
 
 
-.containerImgLog{
+.containerImgLog {
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
@@ -111,4 +134,284 @@ h1 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}  
+}
+
+/*  fin login css  */
+
+
+/*  profil css  */
+
+.containerProfile{
+  background-color: rgb(33, 33, 33);
+  min-height: 100vh;
+}
+.wrapperImgProfil {
+
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+
+
+}
+
+.wrapperDivProfilInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 35rem;
+}
+
+.containerInfoUser {
+
+  padding: 7rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+
+}
+
+.containerUsernamBtnProfil {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.containerBtnProfil {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+}
+
+
+.containerBtnProfil button {
+
+  border: none;
+  padding: .5rem 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.298);
+
+}
+
+
+.containerBtnProfil button:hover {
+
+
+
+
+  background-color: #ddc3ff60;
+
+
+}
+.infoProfile {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.containerVignetteProfil {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0rem;
+  margin: 0 10rem;
+  border-top: 1px solid rgba(169, 167, 167, 0.645);
+  flex-wrap: wrap;
+}
+
+.wrapperVignetteProfil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+  max-width: 20rem;
+  height: 20rem;
+  overflow: hidden;
+}
+
+.imagePost{
+  
+  width: 100%;
+}
+
+
+
+/* css del parte create image post*/
+.createPostContainer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #00000062;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.createPostContainer form{
+  padding: 1.5rem 1rem;
+  background-color: #ffffffe3;
+  border-radius: 2rem;
+  color: rgb(33, 33, 33);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  ;
+}
+
+.createPostContainer input {
+  padding: .5rem;
+  text-align: center;
+  border: none;
+  border: .5px solid rgb(33, 33, 33);
+  border-radius: .5rem;
+  background-color: transparent;
+  color: rgb(33, 33, 33);
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  width: 35rem;
+  margin: 5px;
+}
+
+.createPostContainer form button{
+  border: none;
+  background: rgb(33, 33, 33);
+  width: 35rem;
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+
+.createPostContainer input::placeholder {
+  color: rgb(33, 33, 33);
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.createPostContainer input:focus {
+  outline-color: #C598FF;
+}
+
+
+.containerImgTextCreatePost{
+  width: 35rem;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.wrapperImgProfilCreatePost{
+  width: 6rem;
+  height: 6rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+
+}
+
+.createPostContainer textarea{
+  padding: .5rem;
+  text-align: center;
+  border: none;
+  border: .5px solid rgb(33, 33, 33);
+  border-radius: .5rem;
+  background-color: transparent;
+  color: rgb(33, 33, 33);
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  width: 35rem;
+  margin: 5px;
+
+}
+.createPostContainer textarea::placeholder{
+  color: rgb(33, 33, 33);
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+  transform: translateY(27px);
+}
+
+.createPostContainer textarea:focus {
+  outline-color: #C598FF;
+}
+
+
+.wrapperSelect{
+
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+
+
+}
+
+select {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding: 8px;
+  width: 6rem;
+  border: 1px solid rgb(33, 33, 33);
+  border-radius: .5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+
+  background-image: linear-gradient(45deg, transparent 50%, #999 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 10px) center;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+
+}
+
+
+select option {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.createPostContainer select:focus {
+  outline-color: #C598FF;
+}
+
+
+select option:hover {
+  background-color: #f5f5f5;
+}
+
+
+select option:checked {
+  background-color: #ddd;
+}
+
+
+

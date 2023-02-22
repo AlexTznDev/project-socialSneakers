@@ -1,37 +1,54 @@
 <div class="containerProfile">
 
-  <div class="containerInfoUser" style="background-color: rgb(162, 111, 255);">
+  <div class="containerInfoUser">
 
-    <h1>
-      This is your personal space.
-    </h1>
+    <div class="containerImgProfil">
 
-    <p>Username: {{userInfo.username}}</p>
-    <p>age: {{userInfo.age}}</p>
-    <p>description: {{userInfo.description}}</p>
-    <p>sneakers in the collection: {{allSneakers.length}}</p>
-    <p>sneakers i want a sell: {{shoesInSell.length}}</p>
-    <p>{{userInfo.friends.length}} friends</p>
+      <div class="wrapperImgProfil">
 
-    {{#if userInfo.profilePicture}}
-      <img
-        src="{{userInfo.profilePicture}}"
-        alt="user image profile"
-        width="200px"
-      />
-    {{/if}}
+        {{#if userInfo.profilePicture}}
+          <img
+            src="{{userInfo.profilePicture}}"
+            alt="user image profile"
+            width="200px"
+          />
+        {{/if}}
 
-    <br />
-    <br />
-    <button id="editProfile">Edit Profile</button>
-    <button id="createPost">Create Post</button>
+      </div>
+
+    </div>
+
+    <div class="wrapperDivProfilInfo">
+
+      <div class="containerUsernamBtnProfil">
+        <p>{{userInfo.username}}</p>
+
+        <div class="containerBtnProfil">
+          <button id="editProfile">Edit Profile</button>
+          <button id="createPost">Create Post</button>
+        </div>
+
+      </div>
+
+      <div class="infoProfile">
+
+        <p><span>{{userInfo.age}}</span> years old</p>
+        <p><span>{{allSneakers.length}}</span> sneakers in the collection</p>
+        {{!-- <p>sneakers i want a sell: {{shoesInSell.length}}</p> --}}
+        <p><span>{{userInfo.friends.length}}</span> friends</p>
+
+      </div>
+
+      <p>{{userInfo.description}}</p>
+
+    </div>
 
   </div>
 
-  <br />
-  <br />
-
-  <div class="friendList" style="background-color: rgb(255, 102, 102);">
+  <div
+    class="friendList"
+    style="display: none ; background-color: rgb(255, 102, 102);"
+  >
 
     <h2 style="color: white">My friends</h2>
     {{#each allFriends.friends}}
@@ -72,103 +89,86 @@
       enctype="multipart/form-data"
     >
 
-      <h2>Create a post</h2>
 
-      <label for="price">Price</label>
-      <input type="number" name="price" />
 
-      <br />
-      <br />
+<div class="containerImgTextCreatePost">
+      <div class="wrapperImgProfilCreatePost">
 
-      <label for="size">Size</label>
-      <input type="number" name="size" />
+        {{#if userInfo.profilePicture}}
+          <img
+            src="{{userInfo.profilePicture}}"
+            alt="user image profile"
+            width="200px"
+          />
+        {{/if}}
 
-      <br />
-      <br />
+      </div>
+</div>
 
-      <label for="forSale">For sale
-        <select name="forSale">
-          <option value="For sale">For sale</option>
-          <option value="No, i keep it!">No, I keep it!</option>
-        </select>
 
-      </label>
 
-      <br />
-      <br />
-
-      <label for="image">Image sneaker file</label>
-      <input type="file" name="image" />
-
-      <br />
-      <br />
-
-      <label for="color">Color</label>
-      <input type="text" name="color" />
-
-      <br />
-      <br />
-
-      <label for="brand">Brand</label>
-      <input type="text" name="brand" />
-
-      <br />
-      <br />
-
-      <label for="model">Model</label>
-      <input type="text" name="model" />
-
-      <br />
-      <br />
-
+<div class="wrapperSelect">
       <label for="status">
-        Status
+     
         <select name="status">
           <option value="used">Used</option>
           <option value="new">New</option>
         </select>
       </label>
 
-      <br />
-      <br />
+      <label for="forSale">
+        <select name="forSale">
+          <option value="For sale">For sale</option>
+          <option value="No, i keep it!">No, I keep it!</option>
+        </select>
 
-      <label for="description">Description</label>
-      <input type="text" name="description" />
+      </label>
+</div>
 
-      <br />
-      <br />
+      <label for="image"></label>
+      <input type="file" name="image"/>
+
+      <label for="price"></label>
+      <input type="number" name="price" placeholder="Price" />
+
+      <label for="size"></label>
+      <input type="number" name="size" placeholder="Size" />
+
+
+      <label for="color"></label>
+      <input type="text" name="color" placeholder="Color" />
+
+      <label for="brand"></label>
+      <input type="text" name="brand" placeholder="brand" />
+
+      <label for="model"></label>
+      <input type="text" name="model" placeholder="Model" />
+
+      <label for="description"></label>
+      <textarea rows="4" cols="50" name="description" placeholder="Description"></textarea>
 
       <button>Create</button>
     </form>
 
   </div>
-  <br /><br />
 
-  <div style="background-color: rgb(86, 86, 254);">
+  <div class="containerVignetteProfil">
+
     {{#each allSneakers}}
 
       {{#if this.image}}
 
-        <a href="/profile/info-user/{{this._id}}">
-          <img
-            src="{{this.image}}"
-            alt="sneakers model"
-            width="200px"
-            class="imagePost"
-          />
-        </a>
+        <div class="wrapperVignetteProfil">
 
-        <br />
-        <br />
+          <a href="/profile/info-user/{{this._id}}">
+            <img src="{{this.image}}" alt="sneakers model" class="imagePost" />
+          </a>
+
+        </div>
+
       {{/if}}
 
     {{/each}}
-  </div>
-
-  <div class="containerVignetUser" style="display: none">
-
-    <h1>Aqui toda la informacion de tu post.</h1>
-
   </div>
 
 </div>
