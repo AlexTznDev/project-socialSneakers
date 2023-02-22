@@ -1,12 +1,114 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
+*{
+  margin: 0;
+}
+
+
+
+nav{
+  position: fixed;
+  display: flex;
+  padding: .5rem 1rem;
+  gap:1.5rem;
+  width: 100%;
+  color: #ff0080;
+  justify-content: flex-end;
+  transform: translateX(-30px);
+}
+nav a {
+  text-decoration: none;
+  color: #ff0080;
+}
+nav a:hover {
+  color: #fb1c8c;
 }
 
 h1 {
   color: 15px;
 }
+
+
+.containerLogin{
+  width: 100vw;
+  height: 100vh;
+  background-color: #00b7ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/fundo.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
+
+.containerLogin form{
+  padding: 4rem 1rem;
+  background-color: rgba(13, 0, 50, 0.226);
+  border-radius: 2rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  ;
+  
+}
+
+.containerLogin form h1{
+  margin-bottom: 1rem;
+}
+
+.containerLogin input{
+  padding: .5rem;
+  text-align: center;
+  border: none;
+  border: .5px solid rgba(255, 255, 255, 0.775);
+  border-radius: .5rem;
+  background-color: transparent;
+  color: #fff;
+  width: 15rem;
+}
+
+
+
+.containerLogin input::placeholder{
+  color: #fff;
+}
+
+
+
+
+.containerLogin form button{
+
+  padding: .5rem 1rem;
+  border: .5px solid rgba(255, 255, 255, 0.285);
+  background-color: #fff;
+  color: rgba(13, 0, 50, 0.741);
+  width: 15rem;
+  border-radius: .5rem;
+
+}
+
+.containerLogin form button:hover{
+
+
+  background-color: #e6e3e3;
+  cursor: pointer;
+}
+
+
+.containerImgLog{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  background-image: url("../images/logo.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}  
