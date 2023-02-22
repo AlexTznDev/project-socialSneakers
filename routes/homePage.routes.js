@@ -5,12 +5,16 @@ const Sneaker = require("../models/Sneaker.model.js");
 const Search = require("../models/search.model.js");
 const User = require("../models/User.model.js")
 
+
+
 router.get("/", async (req, res, next) => {
+
+
   
+  
+
+if(req.session.activeUser !== undefined){ 
   const { _id } = req.session.activeUser;
-
-
-  
   try {
     const allSneakers = await Sneaker.find().select({ _id: 1, image: 1 });
     const response = await Search.find({ owner: _id });
@@ -60,6 +64,13 @@ router.get("/", async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+} else if (req.session.activeUser === undefined){
+  const response2 = await Sneaker.find().select({image:1})
+  res.render("homePage/home-page.hbs",{
+    allId2: response2
+  })
+}
+
 });
 
 //=> GET ("/search")

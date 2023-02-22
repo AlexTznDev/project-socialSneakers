@@ -126,7 +126,7 @@ router.get("/info-user/:id", async (req, res, next) => {
 router.post("/info-user/:id", uploader.single("image"), async (req, res, next) => {
   const { id } = req.params;
   const { comments } = req.body;
-  const { _id, username } = req.session.activeUser;
+  const { _id, username, profilePicture } = req.session.activeUser;
   const { price, forSale, size, color, description, status, brand, model } =
     req.body;
 
@@ -142,7 +142,8 @@ router.post("/info-user/:id", uploader.single("image"), async (req, res, next) =
     const response = await Comments.create({
       userId: _id,
       comentario: comments,
-      name: username
+      name: username,
+      profilePicture: profilePicture
     })
 
     

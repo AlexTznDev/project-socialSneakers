@@ -7,6 +7,7 @@ const commentsSchema = new mongoose.Schema({
         ref :"User",
         required: true
     },
+    profilePicture: String,
     comentario: String,
     name:String
 })

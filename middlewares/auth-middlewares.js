@@ -9,9 +9,16 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 
-
+const isSessionOn = (req, res, next) => {
+    if(req.session.activeUser !== undefined){
+        res.redirect("/profile")
+    } else {
+        next()
+    }
+}
 
 
 module.exports = {
-    isLoggedIn:isLoggedIn
+    isLoggedIn:isLoggedIn,
+    isSessionOn: isSessionOn
 }

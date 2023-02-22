@@ -1,13 +1,11 @@
 <div>
   <h2>Search part</h2>
 
-
-
   {{#each responseToSearch}}
 
-  <div class="searchHomeContainer">
+    <div class="searchHomeContainer">
 
-</div>
+    </div>
 
     <a href="/profile/info-user/{{this._id}}">
       <img src="{{this.image}}" alt="image search" width="200px" /></a>
@@ -16,15 +14,17 @@
 
   {{#each responsUserToSearch}}
 
-  <div class="searchHomeContainer">
+    <div class="searchHomeContainer">
 
-</div>
+    </div>
 
     <a href="/profile/{{this._id}}">
-      <img src="{{this.profilePicture}}" alt="image search user" width="200px" /></a>
+      <img
+        src="{{this.profilePicture}}"
+        alt="image search user"
+        width="200px"
+      /></a>
 
   {{/each}}
 
-
-  
 </div>

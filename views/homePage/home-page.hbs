@@ -1,10 +1,10 @@
-<div>
+<div class="divisionNav">
 
   this is the home page with all collection
 
 </div>
 
-
+{{#if allId}}
 <div class="searchHomeContainer">
 
 <form action="home/search" method="post">
@@ -17,19 +17,40 @@
     <input type="text" id="searchFriend" name="searchFriend" placeholder="Search username ...">
 </form>
 
+</div>
+{{/if}}
+
+<div>
+
+{{#if allId2}}
+  <div class="searchHomeContainer">
+
+<form>
+    <label for="search"></label>
+    <a href="/auth/signup"><input type="text" name="search" placeholder="Search by brand.."></a>
+</form>
+
+<form>
+    <label for="searchFriend"></label>
+    <a href="/auth/signup"><input type="text" id="searchFriend" name="searchFriend" placeholder="Search username ..."></a>
+</form>
 
 </div>
+{{/if}}
 
 <div>
 
 
 
-
+  
   {{#each allId}}
   <a href="/profile/info-user/{{this._id}}"><img src="{{this.image}}" alt="image" width="200px" /></a> 
   {{/each}}
+  
 
 
-
+  {{#each allId2}}
+  <a href="/auth/signup"><img src="{{this.image}}" alt="image" width="200px" /></a> 
+  {{/each}}
 
 </div>

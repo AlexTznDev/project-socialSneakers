@@ -4,8 +4,10 @@ const router = express.Router();
 const User = require("../models/User.model.js")
 const bcrypt = require("bcryptjs")
 
+const { isSessionOn } = require("../middlewares/auth-middlewares.js")
+
 //  GET => "/signup"
-router.get("/signup", (req, res ,next) => {
+router.get("/signup", isSessionOn, (req, res ,next) => {
 
     res.render("auth/signup-form.hbs")
 
@@ -79,7 +81,7 @@ res.redirect("/auth/login")
 
 
 //  GET => "/login"
-router.get("/login", (req, res ,next) => {
+router.get("/login", isSessionOn,(req, res ,next) => {
     res.render("auth/login-form.hbs")
 })
 
@@ -128,7 +130,7 @@ router.post("/login", async (req, res, next) => {
 
 router.get("/logout", (req, res, next) => {
     req.session.destroy(() => {
-      res.redirect("/");
+      res.redirect("/home");
     });
   });
 
