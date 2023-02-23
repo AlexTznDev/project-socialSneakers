@@ -658,8 +658,8 @@ select option:checked {
 }
 
 .wrapperImgIcon {
-  width: 35px;
-  height: 35px;
+  width: 27px;
+  height: 27px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
