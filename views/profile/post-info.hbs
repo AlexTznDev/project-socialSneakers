@@ -13,6 +13,9 @@
     {{! commentario }}
 
     <div class="containerCommentAndInfo">
+      <a href="javascript:history.back()"><div
+          class="cruzSalirContainerPostinfo"
+        ></div></a>
 
       <div class="nameUserAndButton">
         <div class="nameAndImgInfo">
@@ -24,8 +27,8 @@
             />
           </div>
 
-          <a href="/profile/{{allPostInfo.owner._id}}"><p
-            >{{allPostInfo.owner.username}}</p></a>
+          <a href="/profile/{{allPostInfo.owner._id}}"><p><span
+              >{{allPostInfo.owner.username}}</span></p></a>
 
         </div>
 
@@ -156,7 +159,6 @@
             value="{{allPostInfo.model}}"
             placeholder="Model"
           />
-
 
           <label for="description"></label>
           <textarea

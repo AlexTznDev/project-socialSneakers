@@ -87,8 +87,8 @@ router.get("/search", async (req, res, next) => {
     const responsUserToSearch = await User.find({ username: responseSearchUser[0].usernameString }).select({
         profilePicture: 1,
     })
-
     console.log(responseSearchUser)
+    console.log(responseToSearch)
     console.log(responsUserToSearch)
 
     res.render("homePage/home-page-search.hbs",{

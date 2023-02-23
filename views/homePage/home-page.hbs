@@ -1,6 +1,7 @@
-<div class="divisionNav">
 
-  this is the home page with all collection
+<div class="allSearchContainer">
+
+<div class="containerLogoHomePage">
 
 </div>
 
@@ -20,7 +21,6 @@
 </div>
 {{/if}}
 
-<div>
 
 {{#if allId2}}
   <div class="searchHomeContainer">
@@ -38,19 +38,42 @@
 </div>
 {{/if}}
 
-<div>
+</div>
 
 
 
-  
+<div class="allImgHomeContainer">
+
+<div class="containerAllVignetteHome">
+
   {{#each allId}}
-  <a href="/profile/info-user/{{this._id}}"><img src="{{this.image}}" alt="image" width="200px" /></a> 
+
+<div class="wrapperVignetteHome">
+
+  <a href="/profile/info-user/{{this._id}}">
+  <img src="{{this.image}}" alt="image" class="imagePostHome" />
+  </a> 
+
+</div>
+
   {{/each}}
   
 
-
   {{#each allId2}}
-  <a href="/auth/signup"><img src="{{this.image}}" alt="image" width="200px" /></a> 
+
+<div class="wrapperVignetteHome">
+  <a href="/auth/signup">
+  <img src="{{this.image}}" alt="image" class="imagePostHome" />
+  </a> 
+</div>
+
+
+
+
   {{/each}}
 
 </div>
+
+
+<div>
+
