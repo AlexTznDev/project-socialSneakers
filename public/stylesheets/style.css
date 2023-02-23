@@ -299,7 +299,6 @@ h1 {
 
 .createPostContainer {
   z-index: 1003;
-  backdrop-filter: blur(2px);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -480,7 +479,7 @@ select option:checked {
   justify-content: center;
   align-items: center;
   z-index: 1003;
-  backdrop-filter: blur(2px);
+
 
 }
 
@@ -969,7 +968,7 @@ select option:checked {
   justify-content: center;
   align-items: flex-start;
   transform: translateX(100%);
-  transition: all 1s ease-in-out;
+  transition: all 1s cubic-bezier(.445, .05, .111, .966);
 
 }
 
@@ -979,7 +978,7 @@ select option:checked {
 }
 .current{
   transform: translateX(0%);
-  transition: all 1s ease-in-out;
+  transition: all 1s cubic-bezier(.445, .05, .111, .966);
 }
 
 .friendLink{
@@ -1014,8 +1013,8 @@ color: #c598ff9d;
 }
 
 .wrapperImgIconFriend{
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -1028,3 +1027,4 @@ color: #c598ff9d;
   height: 100%;
   object-fit: cover;
 }
+
