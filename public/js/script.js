@@ -13,48 +13,71 @@ document.addEventListener("DOMContentLoaded", () => {
   let containerProfileDOM = document.querySelector(".containerProfile");
   let createPostContainerDOM = document.querySelector(".createPostContainer");
   let createPostDOM = document.querySelector("#createPost");
-  if(createPostContainerDOM !== null && createPostDOM !== null && containerProfileDOM !== null){
-      createPostDOM.addEventListener("click", () => {
+  if (
+    createPostContainerDOM !== null &&
+    createPostDOM !== null &&
+    containerProfileDOM !== null
+  ) {
+    createPostDOM.addEventListener("click", () => {
       createPostContainerDOM.style.display = "flex";
-      
-  });
+    });
   }
-
 
   let editPostButtonDOM = document.querySelector("#editPostButton");
   let editPostContainerDOM = document.querySelector(".editPostContainer");
-  if(editPostButtonDOM !== null && editPostContainerDOM !== null ){
-      editPostButtonDOM.addEventListener("click", () => {
-    editPostContainerDOM.style.display = "flex";
-  });
+  if (editPostButtonDOM !== null && editPostContainerDOM !== null) {
+    editPostButtonDOM.addEventListener("click", () => {
+      editPostContainerDOM.style.display = "flex";
+    });
   }
 
-
-  let cruzSalirContainerDOM = document.querySelector(".cruzSalirContainer")
-  if(cruzSalirContainerDOM !== null && createPostContainerDOM !== null){
+  let cruzSalirContainerDOM = document.querySelector(".cruzSalirContainer");
+  if (cruzSalirContainerDOM !== null && createPostContainerDOM !== null) {
     cruzSalirContainerDOM.addEventListener("click", () => {
       createPostContainerDOM.style.display = "none";
-      
-  });
+    });
   }
 
-  let cruzSalirEditprofilContainerDOM = document.querySelector(".cruzSalirEditprofilContainer")
-  if(cruzSalirEditprofilContainerDOM !== null && editProfileContainerDOM !== null){
+  let cruzSalirEditprofilContainerDOM = document.querySelector(
+    ".cruzSalirEditprofilContainer"
+  );
+  if (
+    cruzSalirEditprofilContainerDOM !== null &&
+    editProfileContainerDOM !== null
+  ) {
     cruzSalirEditprofilContainerDOM.addEventListener("click", () => {
       editProfileContainerDOM.style.display = "none";
-    
-  });
+    });
   }
 
-  let cruzSalirContainerEditPostDOM = document.querySelector(".cruzSalirContainerEditPost")
-  if(cruzSalirContainerEditPostDOM !== null && editPostContainerDOM !== null){
+  let cruzSalirContainerEditPostDOM = document.querySelector(
+    ".cruzSalirContainerEditPost"
+  );
+  if (cruzSalirContainerEditPostDOM !== null && editPostContainerDOM !== null) {
     cruzSalirContainerEditPostDOM.addEventListener("click", () => {
       editPostContainerDOM.style.display = "none";
-    
-  });
+    });
   }
 
+  let friendLinkDOM = document.querySelector(".friendLink");
+  let friendListDOM = document.querySelector(".friendList");
+  if (friendLinkDOM !== null && friendListDOM !== null) {
+    friendLinkDOM.addEventListener("click", () => {
+      if (friendListDOM.classList.contains("current")) {
+        friendListDOM.classList.remove("current");
+      } else {
+        friendListDOM.classList.add("current");
+      }
+    });
+  }
+
+  if (friendListDOM !== null) {
+    friendListDOM.addEventListener("click", () => {
+      if (friendListDOM.classList.contains("current")) {
+        friendListDOM.classList.remove("current");
+      }
+    });
+  }
 
   // *************************************************************************************
 });
-

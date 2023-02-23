@@ -1,87 +1,84 @@
+<div class="containerProfile">
 
-  <div class="containerProfile">
+  <div class="containerInfoUser">
 
-    <div class="containerInfoUser">
+    <div class="containerImgProfil">
 
-      <div class="containerImgProfil">
+      <div class="wrapperImgProfil">
 
-        <div class="wrapperImgProfil">
-
-          {{#if UserInfo.profilePicture}}
-            <img src="{{UserInfo.profilePicture}}" alt="user image profile" />
-          {{/if}}
-        </div>
-
-      </div>
-
-      <div class="wrapperDivProfilInfo">
-
-        <div class="containerUsernamBtnProfil">
-
-          <p>{{UserInfo.username}}</p>
-
-          <div class="containerBtnProfil">
-
-            {{#if isNotFriend}}
-              <form
-                action="/profile/{{UserInfo._id}}/followFriend"
-                method="post"
-              >
-                <button id="BtnFollow">Follow</button>
-              </form>
-            {{/if}}
-
-          </div>
-
-        </div>
-
-        <div class="infoProfile">
-          <p><span>{{UserInfo.age}}</span> years old</p>
-          <p><span>{{allSneakers.length}}</span> sneakers in the collection</p>
-          <p><span>{{allFriends.friends.length}}</span> friends</p>
-        </div>
-
-        <p>description: {{UserInfo.description}}</p>
-
-      </div>
-
-    </div>
-
-    <div class="friendList" style="display:none">
-
-      <h2 style="color: white">My friends</h2>
-      {{#each allFriends.friends}}
-
-        <a
-          href="/profile/{{this._id}}"
-          style="color: rgb(255, 255, 255)"
-        >{{this.username}}</a>
-        <br />
-        <br />
-
-      {{/each}}
-
-    </div>
-
-    <div class="containerVignetteProfil">
-      {{#each allSneakers}}
-
-        {{#if this.image}}
-
-          <div class="wrapperVignetteProfil">
-
-            <a href="/profile/info-user/{{this._id}}">
-              <img
-                src="{{this.image}}"
-                alt="sneakers model"
-                class="imagePost"
-              />
-            </a>
-          </div>
-
+        {{#if UserInfo.profilePicture}}
+          <img src="{{UserInfo.profilePicture}}" alt="user image profile" />
         {{/if}}
+      </div>
 
-      {{/each}}
+    </div>
+
+    <div class="wrapperDivProfilInfo">
+
+      <div class="containerUsernamBtnProfil">
+
+        <p>{{UserInfo.username}}</p>
+
+        <div class="containerBtnProfil">
+
+          {{#if isNotFriend}}
+            <form action="/profile/{{UserInfo._id}}/followFriend" method="post">
+              <button id="BtnFollow">Follow</button>
+            </form>
+          {{/if}}
+
+        </div>
+
+      </div>
+
+      <div class="infoProfile">
+        <p><span>{{UserInfo.age}}</span> years old</p>
+        <p><span>{{allSneakers.length}}</span> sneakers in the collection</p>
+        <p class="friendLink"><span>{{allFriends.friends.length}}</span>
+          friends</p>
+      </div>
+
+      <p>description: {{UserInfo.description}}</p>
+
     </div>
 
   </div>
+
+  <div class="friendList">
+
+    <h2>All Friends:</h2>
+    {{#each allFriends.friends}}
+
+      <div class="wrapperNamefriend">
+
+        <div class="wrapperImgIconFriend">
+          <img src="{{this.profilePicture}}" alt="profile picture owner" />
+        </div>
+
+        <a href="/profile/{{this._id}}"><span
+          >{{this.username}}</span></a>
+
+      </div>
+
+    {{/each}}
+
+  </div>
+
+  <div class="containerVignetteProfil">
+    {{#each allSneakers}}
+
+      {{#if this.image}}
+
+        <div class="wrapperVignetteProfil">
+
+          <a href="/profile/info-user/{{this._id}}">
+            <img src="{{this.image}}" alt="sneakers model" class="imagePost" />
+          </a>
+        </div>
+
+      {{/if}}
+
+    {{/each}}
+  </div>
+
+</div>

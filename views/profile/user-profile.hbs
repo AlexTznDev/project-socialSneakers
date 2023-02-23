@@ -36,7 +36,7 @@
         <p><span>{{userInfo.age}}</span> years old</p>
         <p><span>{{allSneakers.length}}</span> sneakers in the collection</p>
         {{!-- <p>sneakers i want a sell: {{shoesInSell.length}}</p> --}}
-        <p><span>{{userInfo.friends.length}}</span> friends</p>
+        <p class="friendLink"><span>{{userInfo.friends.length}}</span> friends</p>
 
       </div>
 
@@ -46,19 +46,25 @@
 
   </div>
 
-  <div
-    class="friendList"
-    style="display: none ; background-color: rgb(255, 102, 102);"
-  >
+  <div class="friendList">
 
-    <h2 style="color: white">My friends</h2>
-    {{#each allFriends.friends}}
+    <h2>My friends:</h2>
 
-      <a href="/profile/{{this._id}}" style="color: white">{{this.username}}</a>
-      <br />
-      <br />
+        {{#each allFriends.friends}}
 
-    {{/each}}
+          <div class="wrapperNamefriend">
+
+            <div class="wrapperImgIconFriend">
+              <img src="{{this.profilePicture}}" alt="profile picture owner" />
+            </div>
+
+            <a href="/profile/{{this._id}}"><span>{{this.username}}</span></a>
+
+
+          </div>
+
+        {{/each}}
+
 
   </div>
 
