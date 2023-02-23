@@ -872,7 +872,9 @@ select option:checked {
   padding-top: 7rem;
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
+  padding-right: 10rem;
+  padding-left: 10rem;
 }
 
 .containerLogoHomePage {
@@ -935,6 +937,13 @@ select option:checked {
   justify-content: center;
   padding-bottom: 5rem;
   padding-top: 1rem;
-  border-top: .5px solid rgba(255, 255, 255, 0.405);
+  border-top: .5px solid #ffffff69;
+ 
   
+}
+
+.greyLine{
+  width: 100%;
+  height: .5px;
+  background-color: #ffffff9a;
 }
