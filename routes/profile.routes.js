@@ -171,8 +171,6 @@ router.post("/info-user/:id", uploader.single("image"), async (req, res, next) =
 
     //****************************************************
     
-
-    console.log(response)
 //******************************************************************
     res.redirect(`/profile/info-user/${id}`);
   } catch (error) {

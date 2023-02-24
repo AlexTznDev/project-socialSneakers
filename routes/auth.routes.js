@@ -15,7 +15,7 @@ router.get("/signup", isSessionOn, (req, res ,next) => {
 // POST => "/signup"
 router.post("/signup", async(req, res, next) => {
 
-console.log(req.body)
+
 
 const {username, email, password} = req.body
 
@@ -87,7 +87,7 @@ router.get("/login", isSessionOn,(req, res ,next) => {
 
 // POS => "auth/login" => obtencion de la data para el log in.
 router.post("/login", async (req, res, next) => {
-   // console.log(req.body)
+
     const { username, password } = req.body
 
     if(username === "" || password === "") {
