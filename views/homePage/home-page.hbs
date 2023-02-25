@@ -5,38 +5,20 @@
 
 </div>
 
-{{#if allId}}
+
 <div class="searchHomeContainer">
 
-<form action="home/search" method="post">
+<form action="home" method="get">
     <label for="search"></label>
     <input type="text" name="search" placeholder="Search by brand..">
 </form>
 
-<form action="home/search" method="post">
+<form action="home" method="get">
     <label for="searchFriend"></label>
     <input type="text" id="searchFriend" name="searchFriend" placeholder="Search username ...">
 </form>
 
 </div>
-{{/if}}
-
-
-{{#if allId2}}
-  <div class="searchHomeContainer">
-
-<form>
-    <label for="search"></label>
-    <a href="/auth/signup"><input type="text" name="search" placeholder="Search by brand.."></a>
-</form>
-
-<form>
-    <label for="searchFriend"></label>
-    <a href="/auth/signup"><input type="text" id="searchFriend" name="searchFriend" placeholder="Search username ..."></a>
-</form>
-
-</div>
-{{/if}}
 
 </div>
 
@@ -52,25 +34,18 @@
 
 <div class="wrapperVignetteHome">
 
+
+{{#if this.image}}
   <a href="/profile/info-user/{{this._id}}">
   <img src="{{this.image}}" alt="image" class="imagePostHome" />
   </a> 
-
-</div>
-
-  {{/each}}
-  
-
-  {{#each allId2}}
-
-<div class="wrapperVignetteHome">
-  <a href="/auth/signup">
-  <img src="{{this.image}}" alt="image" class="imagePostHome" />
+{{else if this.profilePicture}}
+  <a href="/profile/{{this._id}}">
+  <img src="{{this.profilePicture}}" alt="image" class="imagePostHome" />
   </a> 
+{{/if}}
+
 </div>
-
-
-
 
   {{/each}}
 
